@@ -1,0 +1,27 @@
+# ==============================================================================
+# Git Ignore Configuration
+# ==============================================================================
+
+# Credentials and environment secrets
+.env
+*.env.local
+
+# Database, data volumes and logs
+odoo-data/
+*.log
+*.pid
+data/
+db_dump/
+
+# Heavy base repositories
+# Cloned odoo core source is kept local; standard Docker runs the official lightweight image
+/odoo/
+
+# Python cache & build files
+__pycache__/
+*.py[cod]
+*$py.class
+*.swp
+*.bak
+.DS_Store
+Thumbs.db
