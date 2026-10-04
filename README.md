@@ -50,11 +50,22 @@
 | **Deployment Time** | **< 3 minutes** | Single-command Docker Compose orchestration |
 | **Web Endpoint Response** | **HTTP 200 OK** | Verified responsive on `http://localhost:8069` |
 
-### 📈 TRKT: Repository Trends & Real-Time History Graph
-Track real-time telemetry, commit cadence, star trajectory, and module expansion:
-* **[🌐 View Live Interactive TRKT Trends Graph](https://rsnarsna.github.io/odoo/#trkt)**
-* **Tracked Metrics:** Live GitHub stars, watchers, forks, active module expansion (1 &rarr; 18 &rarr; 32 &rarr; 44 &rarr; 214 &rarr; 278), commit velocity, and cumulative license cost savings.
-* **[📖 Full Apps User Guide & Setup Manual](https://rsnarsna.github.io/odoo/guide.html)**
+### 📈 GitHub Repository Tracking & Star History
+
+Track repository stars, commit velocity across all 5 deployment stages, and community interest over time:
+
+<div align="center">
+
+[![Star History Chart](https://api.star-history.com/svg?repos=rsnarsna/odoo&type=Date)](https://star-history.com/#rsnarsna/odoo&Date)
+
+| Metric | Live Telemetry Badge | Details |
+|---|:---:|---|
+| **Repository Stars** | [![GitHub Stars](https://img.shields.io/github/stars/rsnarsna/odoo?style=social)](https://github.com/rsnarsna/odoo) | Real-time community stargazers |
+| **Community Forks** | [![GitHub Forks](https://img.shields.io/github/forks/rsnarsna/odoo?style=social)](https://github.com/rsnarsna/odoo) | Open-source developer forks |
+| **Commit Activity** | [![GitHub commit activity](https://img.shields.io/github/commit-activity/y/rsnarsna/odoo)](https://github.com/rsnarsna/odoo/commits/main) | 13 production commits across 5 stages |
+| **Last Commit** | [![GitHub last commit](https://img.shields.io/github/last-commit/rsnarsna/odoo)](https://github.com/rsnarsna/odoo/commits/main) | Actively maintained & tested |
+
+</div>
 
 ---
 

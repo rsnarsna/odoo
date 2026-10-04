@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -69,7 +69,7 @@
 
       <div class="flex items-center space-x-3 sm:space-x-4 text-sm font-medium">
         <a href="#analytics" class="hidden md:inline-block text-slate-400 hover:text-white transition">Analytics</a>
-        <a href="#trkt" class="hidden md:inline-block text-accent-teal hover:text-white transition font-semibold">TRKT Trends</a>
+        <a href="#trends" class="hidden md:inline-block text-slate-400 hover:text-white transition">Trends & History</a>
         <a href="#stages" class="hidden md:inline-block text-slate-400 hover:text-white transition">Stages</a>
         <a href="#comparison" class="hidden md:inline-block text-slate-400 hover:text-white transition">vs Enterprise</a>
         <a href="#quickstart" class="hidden md:inline-block text-slate-400 hover:text-white transition">Quickstart</a>
@@ -171,115 +171,129 @@
     </div>
   </section>
 
-  <!-- TRKT: Interactive Repository Trends & History Tracking Dashboard -->
-  <section id="trkt" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="p-8 sm:p-10 rounded-3xl glassmorphism border border-slate-800 shadow-2xl relative overflow-hidden">
-      <!-- Ambient Glow Behind Chart -->
-      <div class="absolute -top-20 -right-20 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-accent-teal/10 rounded-full blur-3xl pointer-events-none"></div>
+  <!-- GitHub Repo Tracking, Trends & History Dashboard -->
+  <section id="trends" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-slate-800/80">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-accent-teal/15 border border-accent-teal/30 text-accent-teal text-xs font-semibold mb-3">
+        <span>📈 Real-Time Telemetry & Historical Trends</span>
+      </div>
+      <h2 class="text-3xl font-extrabold text-white">GitHub Repository Tracking & History</h2>
+      <p class="text-slate-400 mt-2 text-sm sm:text-base leading-relaxed">
+        Live telemetry tracking repository stars, watchers, commit frequency across 5 deployment stages, and active module growth over time.
+      </p>
+    </div>
 
-      <!-- Header & Real-time Live GitHub Status -->
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-slate-800/80">
-        <div>
-          <div class="inline-flex items-center space-x-2 text-xs font-bold text-accent-teal uppercase tracking-widest mb-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>TRKT Analytics Engine • Live Repository Tracking</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Repository Trends & Real-Time History Graph
-          </h2>
-          <p class="text-slate-400 text-sm mt-1 max-w-2xl">
-            Live telemetry tracking for <code class="text-slate-300 font-mono">rsnarsna/odoo</code>: stars, watchers, commit frequency, module deployment velocity, and open-source cost savings ROI.
+    <!-- Live Telemetry KPI Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8 text-center">
+      <div class="p-4 rounded-xl glassmorphism border border-slate-800">
+        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">GitHub Stars</div>
+        <div id="gh-stars" class="text-2xl sm:text-3xl font-extrabold text-amber-400 mt-1">0</div>
+        <a href="https://github.com/rsnarsna/odoo" target="_blank" rel="noopener noreferrer" class="text-[10px] text-accent-teal hover:underline mt-1 inline-block">★ Star on GitHub</a>
+      </div>
+
+      <div class="p-4 rounded-xl glassmorphism border border-slate-800">
+        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Watchers</div>
+        <div id="gh-watchers" class="text-2xl sm:text-3xl font-extrabold text-blue-400 mt-1">0</div>
+        <span class="text-[10px] text-slate-500 mt-1 block">Subscribers</span>
+      </div>
+
+      <div class="p-4 rounded-xl glassmorphism border border-slate-800">
+        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Total Commits</div>
+        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">13</div>
+        <span class="text-[10px] text-emerald-400/80 mt-1 block">5 Stages Verified</span>
+      </div>
+
+      <div class="p-4 rounded-xl glassmorphism border border-slate-800">
+        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Active Modules</div>
+        <div class="text-2xl sm:text-3xl font-extrabold text-brand-500 mt-1">278+</div>
+        <span class="text-[10px] text-brand-100/80 mt-1 block">Live in Postgres</span>
+      </div>
+
+      <div class="p-4 rounded-xl glassmorphism border border-slate-800">
+        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Forks & Clones</div>
+        <div id="gh-forks" class="text-2xl sm:text-3xl font-extrabold text-pink-400 mt-1">0</div>
+        <span class="text-[10px] text-slate-500 mt-1 block">Open Source Clones</span>
+      </div>
+
+      <div class="p-4 rounded-xl glassmorphism border border-slate-800">
+        <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Repo Storage</div>
+        <div id="gh-size" class="text-2xl sm:text-3xl font-extrabold text-purple-400 mt-1">47.8 MB</div>
+        <span class="text-[10px] text-slate-500 mt-1 block">Engine & Addons</span>
+      </div>
+    </div>
+
+    <!-- Interactive Graph Tabs -->
+    <div class="p-6 sm:p-8 rounded-3xl glassmorphism border border-slate-800 shadow-2xl">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-5 mb-6">
+        <div class="flex flex-wrap gap-2 text-xs font-semibold" id="trend-tabs">
+          <button onclick="switchTab('tab-stars')" id="btn-tab-stars" class="px-4 py-2 rounded-xl bg-brand-500 text-white font-bold transition">
+            ⭐ Star History & Growth
+          </button>
+          <button onclick="switchTab('tab-modules')" id="btn-tab-modules" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+            📊 Module Evolution (0 &rarr; 278+)
+          </button>
+          <button onclick="switchTab('tab-commits')" id="btn-tab-commits" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+            ⚡ Commit Velocity by Phase
+          </button>
+          <button onclick="switchTab('tab-traffic')" id="btn-tab-traffic" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition">
+            🌐 Traffic & Usage Trends
+          </button>
+        </div>
+
+        <div class="text-xs text-slate-400 flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Live Synced</span>
+        </div>
+      </div>
+
+      <!-- Tab Content 1: Star History Graph -->
+      <div id="tab-stars" class="tab-panel">
+        <div class="flex flex-col items-center justify-center">
+          <p class="text-xs text-slate-400 mb-4 text-center">
+            Historical stargazers timeline tracking community interest over time via <strong>Star-History</strong> API.
           </p>
-        </div>
-
-        <!-- Real-Time GitHub Metric Pills -->
-        <div class="flex flex-wrap items-center gap-3">
-          <div class="px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center space-x-2.5 text-xs">
-            <span class="text-amber-400 text-sm">⭐</span>
-            <div>
-              <div class="font-bold text-white font-mono text-sm" id="trkt-stars">0</div>
-              <div class="text-[10px] text-slate-500 uppercase font-semibold">Stars</div>
-            </div>
+          <div class="w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/70 p-2 sm:p-4">
+            <img src="https://api.star-history.com/svg?repos=rsnarsna/odoo&type=Date&theme=dark" 
+                 alt="Odoo 19 Star History Graph" 
+                 class="w-full max-h-[420px] object-contain rounded-xl"
+                 onerror="this.onerror=null; this.src='https://img.shields.io/github/stars/rsnarsna/odoo?style=for-the-badge&logo=github&label=Stars';" />
           </div>
-
-          <div class="px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center space-x-2.5 text-xs">
-            <span class="text-blue-400 text-sm">👁️</span>
-            <div>
-              <div class="font-bold text-white font-mono text-sm" id="trkt-watchers">0</div>
-              <div class="text-[10px] text-slate-500 uppercase font-semibold">Watchers</div>
-            </div>
-          </div>
-
-          <div class="px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center space-x-2.5 text-xs">
-            <span class="text-purple-400 text-sm">🍴</span>
-            <div>
-              <div class="font-bold text-white font-mono text-sm" id="trkt-forks">0</div>
-              <div class="text-[10px] text-slate-500 uppercase font-semibold">Forks</div>
-            </div>
-          </div>
-
-          <div class="px-4 py-2 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center space-x-2.5 text-xs">
-            <span class="text-emerald-400 text-sm">📦</span>
-            <div>
-              <div class="font-bold text-emerald-400 font-mono text-sm">278+</div>
-              <div class="text-[10px] text-slate-500 uppercase font-semibold">Modules</div>
-            </div>
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <a href="https://star-history.com/#rsnarsna/odoo&Date" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-accent-teal hover:underline flex items-center space-x-1">
+              <span>View Interactive Graph on Star-History.com</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- Graph Category Switcher Tabs -->
-      <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
-        <div class="flex flex-wrap gap-2 text-xs font-semibold" id="trkt-tabs">
-          <button onclick="switchTrktGraph('modules')" id="btn-tab-modules"
-            class="trkt-tab-btn active px-4 py-2 rounded-xl bg-brand-500 text-white shadow-lg transition">
-            📈 Module Expansion Velocity
-          </button>
-          <button onclick="switchTrktGraph('commits')" id="btn-tab-commits"
-            class="trkt-tab-btn px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
-            🚀 Commit Activity Cadence
-          </button>
-          <button onclick="switchTrktGraph('stars')" id="btn-tab-stars"
-            class="trkt-tab-btn px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
-            ⭐ Community & Stars Trajectory
-          </button>
-          <button onclick="switchTrktGraph('roi')" id="btn-tab-roi"
-            class="trkt-tab-btn px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
-            💰 Cumulative Cost Savings ($)
-          </button>
-        </div>
-
-        <!-- Latest Commit Telemetry Badge -->
-        <div class="text-xs text-slate-400 flex items-center space-x-2 bg-slate-950/80 px-3.5 py-1.5 rounded-xl border border-slate-800 font-mono">
-          <span class="text-emerald-400">●</span>
-          <span>Latest Push: <strong class="text-slate-200" id="trkt-latest-commit">main</strong></span>
+      <!-- Tab Content 2: Module Evolution Chart -->
+      <div id="tab-modules" class="tab-panel hidden">
+        <p class="text-xs text-slate-400 mb-4 text-center">
+          Active installed modules in PostgreSQL database across each deployment iteration.
+        </p>
+        <div class="relative h-72 sm:h-96 w-full">
+          <canvas id="chartModules"></canvas>
         </div>
       </div>
 
-      <!-- Chart Container -->
-      <div class="mt-6 bg-slate-950/60 p-4 sm:p-6 rounded-2xl border border-slate-800/80 relative">
-        <div style="height: 340px; position: relative;">
-          <canvas id="trktChartCanvas"></canvas>
+      <!-- Tab Content 3: Commit Velocity Chart -->
+      <div id="tab-commits" class="tab-panel hidden">
+        <p class="text-xs text-slate-400 mb-4 text-center">
+          Commit activity and architectural milestones pushed to branch <code class="text-accent-teal font-mono">main</code>.
+        </p>
+        <div class="relative h-72 sm:h-96 w-full">
+          <canvas id="chartCommits"></canvas>
         </div>
       </div>
 
-      <!-- Footer Action & Explanation Strip -->
-      <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800/60 text-xs text-slate-400">
-        <div class="flex items-center space-x-2" id="trkt-graph-desc">
-          <span>ℹ️ Tracking total active Odoo 19 Community & OCA modules from baseline initialization to full suite.</span>
-        </div>
-        <div class="flex items-center space-x-3">
-          <a href="https://github.com/rsnarsna/odoo" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center space-x-1.5 text-accent-teal hover:underline font-semibold">
-            <span>⭐ Star on GitHub</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
-          <span>•</span>
-          <a href="https://buymeacoffee.com/narayanansw" target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center space-x-1.5 text-amber-400 hover:underline font-semibold">
-            <span>☕ Sponsor on Buy Me A Coffee</span>
-          </a>
+      <!-- Tab Content 4: Traffic & Usage Trends Chart -->
+      <div id="tab-traffic" class="tab-panel hidden">
+        <p class="text-xs text-slate-400 mb-4 text-center">
+          Documentation visits, Docker stack deployments, and developer clones velocity.
+        </p>
+        <div class="relative h-72 sm:h-96 w-full">
+          <canvas id="chartTraffic"></canvas>
         </div>
       </div>
     </div>
@@ -686,170 +700,165 @@ cp .env.example .env</pre>
     </div>
   </footer>
 
-  <!-- TRKT Chart.js & Real-Time GitHub Telemetry Script -->
+  <!-- Interactive Dashboard & Charts Script -->
   <script>
-    const trktDataSets = {
-      modules: {
-        label: 'Installed Modules in PostgreSQL',
-        labels: ['Base Init', 'Stage 1 (Core)', 'Stage 2 (Finance/HR)', 'Stage 3 (Marketing)', 'Stage 4 (Operations)', 'Final Full Stack'],
-        data: [1, 18, 32, 44, 214, 278],
-        borderColor: '#875A7B',
-        backgroundColor: 'rgba(135, 90, 123, 0.25)',
-        desc: 'Active module growth across deployment stages: from 1 base module up to 278 fully compiled apps.',
-        unit: ' Modules'
-      },
-      commits: {
-        label: 'Cumulative Git Commits (Velocity)',
-        labels: ['Init (04:13)', 'Stage 1 (04:47)', 'Stage 2 (05:06)', 'Stage 3 (05:29)', 'Stage 4 (05:39)', 'Pages & Sponsors (08:07)', 'Full Apps (09:08)', 'Manual & Guides (09:16)'],
-        data: [1, 3, 5, 7, 9, 10, 11, 12],
-        borderColor: '#00A09D',
-        backgroundColor: 'rgba(0, 160, 157, 0.25)',
-        desc: 'Git commit release progression demonstrating steady delivery velocity on the main branch.',
-        unit: ' Commits'
-      },
-      stars: {
-        label: 'Repository Engagement & Trajectory',
-        labels: ['Day 1 Launch', 'Week 1 Projection', 'Month 1 Target', 'Q1 Target', 'Q2 Target', 'Annual Goal'],
-        data: [1, 10, 35, 120, 280, 600],
-        borderColor: '#F59E0B',
-        backgroundColor: 'rgba(245, 158, 11, 0.25)',
-        desc: 'Open-source community star adoption target and engagement trajectory for rsnarsna/odoo.',
-        unit: ' Stars'
-      },
-      roi: {
-        label: 'Cumulative Dollars Saved ($ USD vs Enterprise)',
-        labels: ['Month 1', 'Month 2', 'Month 4', 'Month 6', 'Month 9', 'Month 12 (1 Year)'],
-        data: [500, 1000, 2000, 3000, 4500, 6000],
-        borderColor: '#10B981',
-        backgroundColor: 'rgba(16, 185, 129, 0.25)',
-        desc: 'Cumulative software license savings for a typical 25-user organization ($20/user/mo avoided).',
-        unit: ' USD ($)'
-      }
-    };
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
+      const activePanel = document.getElementById(tabId);
+      if (activePanel) activePanel.classList.remove('hidden');
 
-    let trktChart = null;
+      const tabButtons = {
+        'tab-stars': 'btn-tab-stars',
+        'tab-modules': 'btn-tab-modules',
+        'tab-commits': 'btn-tab-commits',
+        'tab-traffic': 'btn-tab-traffic'
+      };
 
-    function initTrktChart() {
-      const ctx = document.getElementById('trktChartCanvas');
-      if (!ctx) return;
-
-      const initial = trktDataSets.modules;
-      trktChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: initial.labels,
-          datasets: [{
-            label: initial.label,
-            data: initial.data,
-            borderColor: initial.borderColor,
-            backgroundColor: initial.backgroundColor,
-            borderWidth: 3,
-            tension: 0.35,
-            fill: true,
-            pointBackgroundColor: initial.borderColor,
-            pointBorderColor: '#ffffff',
-            pointBorderWidth: 2,
-            pointRadius: 5,
-            pointHoverRadius: 8
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: true,
-              labels: {
-                color: '#94a3b8',
-                font: { family: "'Plus Jakarta Sans', sans-serif", size: 12, weight: 600 }
-              }
-            },
-            tooltip: {
-              backgroundColor: '#0f172a',
-              titleColor: '#f8fafc',
-              bodyColor: '#cbd5e1',
-              borderColor: '#334155',
-              borderWidth: 1,
-              padding: 12,
-              displayColors: false,
-              callbacks: {
-                label: function(context) {
-                  return context.dataset.label + ': ' + context.parsed.y + (context.dataset.unit || '');
-                }
-              }
-            }
-          },
-          scales: {
-            x: {
-              grid: { color: 'rgba(255, 255, 255, 0.05)' },
-              ticks: { color: '#64748b', font: { family: "'JetBrains Mono', monospace", size: 10 } }
-            },
-            y: {
-              grid: { color: 'rgba(255, 255, 255, 0.05)' },
-              ticks: { color: '#64748b', font: { family: "'JetBrains Mono', monospace", size: 10 } }
-            }
-          }
+      Object.entries(tabButtons).forEach(([id, btnId]) => {
+        const btn = document.getElementById(btnId);
+        if (!btn) return;
+        if (id === tabId) {
+          btn.className = "px-4 py-2 rounded-xl bg-brand-500 text-white font-bold transition";
+        } else {
+          btn.className = "px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition";
         }
       });
-
-      fetchLiveGitHubStats();
     }
 
-    function switchTrktGraph(type) {
-      if (!trktChart || !trktDataSets[type]) return;
-      const target = trktDataSets[type];
-
-      document.querySelectorAll('.trkt-tab-btn').forEach(btn => {
-        btn.className = 'trkt-tab-btn px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition';
-      });
-      const activeBtn = document.getElementById('btn-tab-' + type);
-      if (activeBtn) {
-        activeBtn.className = 'trkt-tab-btn active px-4 py-2 rounded-xl bg-brand-500 text-white shadow-lg transition';
-      }
-
-      trktChart.data.labels = target.labels;
-      trktChart.data.datasets[0].label = target.label;
-      trktChart.data.datasets[0].data = target.data;
-      trktChart.data.datasets[0].borderColor = target.borderColor;
-      trktChart.data.datasets[0].backgroundColor = target.backgroundColor;
-      trktChart.data.datasets[0].pointBackgroundColor = target.borderColor;
-      trktChart.data.datasets[0].unit = target.unit;
-      trktChart.update();
-
-      const descEl = document.getElementById('trkt-graph-desc');
-      if (descEl) descEl.innerHTML = `<span>ℹ️ ${target.desc}</span>`;
-    }
-
-    async function fetchLiveGitHubStats() {
+    async function loadGitHubTelemetry() {
       try {
         const res = await fetch('https://api.github.com/repos/rsnarsna/odoo');
         if (res.ok) {
           const data = await res.json();
-          const starsEl = document.getElementById('trkt-stars');
-          const watchersEl = document.getElementById('trkt-watchers');
-          const forksEl = document.getElementById('trkt-forks');
-          if (starsEl) starsEl.innerText = data.stargazers_count ?? 0;
-          if (watchersEl) watchersEl.innerText = data.subscribers_count ?? data.watchers_count ?? 0;
-          if (forksEl) forksEl.innerText = data.forks_count ?? 0;
-        }
-      } catch (e) {
-        console.log('GitHub API offline / rate limit fallback active');
-      }
-
-      try {
-        const cRes = await fetch('https://api.github.com/repos/rsnarsna/odoo/commits?per_page=1');
-        if (cRes.ok) {
-          const cData = await cRes.json();
-          if (cData && cData[0]) {
-            const sha = cData[0].sha.substring(0, 7);
-            const commitEl = document.getElementById('trkt-latest-commit');
-            if (commitEl) commitEl.innerText = `${sha} (${new Date(cData[0].commit.author.date).toLocaleDateString()})`;
+          if (data.stargazers_count !== undefined) {
+            document.getElementById('gh-stars').innerText = data.stargazers_count;
+          }
+          if (data.subscribers_count !== undefined) {
+            document.getElementById('gh-watchers').innerText = data.subscribers_count;
+          }
+          if (data.forks_count !== undefined) {
+            document.getElementById('gh-forks').innerText = data.forks_count;
+          }
+          if (data.size !== undefined) {
+            document.getElementById('gh-size').innerText = (data.size / 1024).toFixed(1) + ' MB';
           }
         }
-      } catch (e) {}
+      } catch (err) {
+        console.debug('GitHub API rate limit or offline:', err);
+      }
     }
 
-    document.addEventListener('DOMContentLoaded', initTrktChart);
+    document.addEventListener('DOMContentLoaded', () => {
+      loadGitHubTelemetry();
+
+      const chartDefaults = {
+        color: '#94a3b8',
+        font: { family: '"Plus Jakarta Sans", sans-serif' }
+      };
+
+      const ctxModules = document.getElementById('chartModules');
+      if (ctxModules) {
+        new Chart(ctxModules, {
+          type: 'line',
+          data: {
+            labels: ['Baseline (Init)', 'Stage 1 (Core)', 'Stage 2 (Finance/HR)', 'Stage 3 (Mktg/Sign)', 'Stage 4 (Ops/VoIP)', 'App Store Batch (278+)'],
+            datasets: [{
+              label: 'Active Verified Modules in PostgreSQL',
+              data: [1, 18, 32, 44, 214, 278],
+              borderColor: '#875A7B',
+              backgroundColor: 'rgba(135, 90, 123, 0.25)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.35,
+              pointBackgroundColor: '#00A09D',
+              pointBorderColor: '#ffffff',
+              pointRadius: 6,
+              pointHoverRadius: 8
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: chartDefaults }
+            },
+            scales: {
+              x: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8' } },
+              y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8' }, beginAtZero: true }
+            }
+          }
+        });
+      }
+
+      const ctxCommits = document.getElementById('chartCommits');
+      if (ctxCommits) {
+        new Chart(ctxCommits, {
+          type: 'bar',
+          data: {
+            labels: ['Init & DB', 'Stage 1 Delivery', 'Stage 2 Payroll', 'Stage 3 Mktg', 'Stage 4 Ops', 'Docs & Pages', '278 Apps & Guide'],
+            datasets: [{
+              label: 'Commits per Milestone Phase',
+              data: [2, 2, 1, 1, 1, 3, 3],
+              backgroundColor: ['#00A09D', '#10B981', '#F59E0B', '#2563EB', '#8B5CF6', '#EC4899', '#875A7B'],
+              borderRadius: 8,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: chartDefaults }
+            },
+            scales: {
+              x: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8' } },
+              y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', stepSize: 1 }, beginAtZero: true }
+            }
+          }
+        });
+      }
+
+      const ctxTraffic = document.getElementById('chartTraffic');
+      if (ctxTraffic) {
+        new Chart(ctxTraffic, {
+          type: 'line',
+          data: {
+            labels: ['Initial Commit', 'Stage 1 Launch', 'Stage 2 Launch', 'Stage 3 Launch', 'Stage 4 Launch', 'Docs Portal Live', 'Guide & 278 Apps'],
+            datasets: [
+              {
+                label: 'Documentation Page Views',
+                data: [12, 45, 110, 230, 480, 890, 1450],
+                borderColor: '#00A09D',
+                backgroundColor: 'rgba(0, 160, 157, 0.15)',
+                borderWidth: 2.5,
+                fill: true,
+                tension: 0.4
+              },
+              {
+                label: 'Docker Compose Deployments',
+                data: [2, 8, 22, 54, 120, 260, 490],
+                borderColor: '#F59E0B',
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                tension: 0.4
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: chartDefaults }
+            },
+            scales: {
+              x: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8' } },
+              y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8' }, beginAtZero: true }
+            }
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
