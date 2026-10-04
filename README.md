@@ -50,6 +50,12 @@
 | **Deployment Time** | **< 3 minutes** | Single-command Docker Compose orchestration |
 | **Web Endpoint Response** | **HTTP 200 OK** | Verified responsive on `http://localhost:8069` |
 
+### 📈 TRKT: Repository Trends & Real-Time History Graph
+Track real-time telemetry, commit cadence, star trajectory, and module expansion:
+* **[🌐 View Live Interactive TRKT Trends Graph](https://rsnarsna.github.io/odoo/#trkt)**
+* **Tracked Metrics:** Live GitHub stars, watchers, forks, active module expansion (1 &rarr; 18 &rarr; 32 &rarr; 44 &rarr; 214 &rarr; 278), commit velocity, and cumulative license cost savings.
+* **[📖 Full Apps User Guide & Setup Manual](https://rsnarsna.github.io/odoo/guide.html)**
+
 ---
 
 ## 🏗️ Architecture & Technology Stack
