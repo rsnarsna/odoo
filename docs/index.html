@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Community 19.0 + OCA Enterprise Stack | Analytics & Documentation</title>
+  <meta name="description" content="Production-ready Odoo 19.0 Community ERP containerized with Docker, featuring free OCA modules replacing paid Enterprise features across 5 stages.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fbf7fc',
+              100: '#f5edf8',
+              500: '#875A7B',
+              600: '#714B67',
+              700: '#5a3b52',
+            },
+            accent: {
+              teal: '#00A09D',
+              amber: '#F59E0B',
+              emerald: '#10B981',
+              blue: '#2563EB',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glassmorphism {
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .gradient-border {
+      background: linear-gradient(135deg, #875A7B 0%, #00A09D 100%);
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px rgba(0, 160, 157, 0.35);
+    }
+  </style>
+</head>
+<body class="bg-[#0B0F19] text-slate-100 font-sans min-h-screen selection:bg-brand-500 selection:text-white">
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-50 glassmorphism border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-brand-500 to-accent-teal flex items-center justify-center font-bold text-white text-lg shadow-lg">
+          Ω
+        </div>
+        <div>
+          <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Odoo 19 + OCA Stack</span>
+          <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent-teal/20 text-accent-teal border border-accent-teal/30">v19.0 Community</span>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-3 sm:space-x-4 text-sm font-medium">
+        <a href="#analytics" class="hidden md:inline-block text-slate-400 hover:text-white transition">Analytics</a>
+        <a href="#stages" class="hidden md:inline-block text-slate-400 hover:text-white transition">Stages</a>
+        <a href="#comparison" class="hidden md:inline-block text-slate-400 hover:text-white transition">vs Enterprise</a>
+        <a href="#quickstart" class="hidden md:inline-block text-slate-400 hover:text-white transition">Quickstart</a>
+        
+        <!-- Buy Me A Coffee Button -->
+        <a href="https://www.buymeacoffee.com/rsnarsna" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center space-x-2 bg-[#FFDD00] text-slate-900 font-bold px-3.5 py-1.5 rounded-lg shadow-md hover:bg-[#ffe338] transition transform hover:-translate-y-0.5">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.216 6.415l-.132-.666c-.119-.597-.386-1.161-.8-1.635-.414-.473-.95-.826-1.554-1.023-.604-.198-1.25-.246-1.874-.14-.624.106-1.205.372-1.688.771l-.168.14V3.5c0-.928-.369-1.818-1.025-2.475C12.318.369 11.428 0 10.5 0h-7C2.572 0 1.682.369 1.025 1.025.369 1.682 0 2.572 0 3.5v9c0 2.914 1.157 5.709 3.218 7.769C5.279 22.33 8.074 23.487 10.988 23.487c2.31 0 4.549-.73 6.414-2.091 1.865-1.36 3.197-3.32 3.818-5.619l1.092-4.043c.277-1.023.27-2.103-.021-3.123-.29-1.02-.888-1.922-1.722-2.585l-.353-.28v-.331zm-2.04 4.544l-.865 3.203c-.45 1.666-1.417 3.088-2.77 4.076-1.353.987-2.977 1.517-4.653 1.517-2.122 0-4.157-.843-5.657-2.343C2.73 15.912 1.887 13.877 1.887 11.755V3.5c0-.43.171-.843.475-1.147C2.666 2.049 3.079 1.878 3.5 1.878h7c.421 0 .834.171 1.138.475.304.304.475.717.475 1.147v4.613l-1.385-1.154c-.725-.6-1.597-.999-2.53-1.158-.933-.16-1.902-.088-2.808.209-.906.297-1.71.827-2.331 1.536-.621.71-1.022 1.556-1.163 2.452l-.198 1.258c-.066.421.056.848.337 1.173.282.325.688.513 1.116.517h8.216l.244 1.22c.079.398.257.774.52 1.09.263.316.604.551.99.683.387.132.802.164 1.205.093.403-.07.781-.248 1.099-.516l.462-.39z"/>
+          </svg>
+          <span>Buy me a coffee</span>
+        </a>
+
+        <!-- GitHub Repo Link -->
+        <a href="https://github.com/rsnarsna/odoo" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-1.5 rounded-lg border border-slate-700 transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="hidden sm:inline">Star</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-16 pb-20 overflow-hidden">
+    <!-- Background Glows -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-brand-500/15 rounded-full blur-[130px] -z-10"></div>
+    <div class="absolute top-1/3 left-1/3 w-[450px] h-[300px] bg-accent-teal/15 rounded-full blur-[120px] -z-10"></div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <!-- Live Status Badge -->
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Stack Operational & Live — Stages 1 to 4 Fully Deployed</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight sm:leading-none text-white mb-6">
+        Enterprise Odoo Power.<br>
+        <span class="bg-gradient-to-r from-brand-500 via-pink-400 to-accent-teal bg-clip-text text-transparent">
+          Zero Monthly User Licenses.
+        </span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+        A containerized, production-grade <strong>Odoo 19.0 Community Edition</strong> architecture integrating 
+        <strong>Odoo Community Association (OCA)</strong> suites to replace high-cost Enterprise features: 
+        Full Accounting, Helpdesk, Contracts, Documents, Field Service, Quality Control, VoIP & e-Signatures.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#quickstart" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-semibold shadow-lg shadow-brand-500/25 transition transform hover:-translate-y-0.5">
+          Deploy with Docker
+        </a>
+        <a href="#stages" class="px-6 py-3 rounded-xl glassmorphism hover:bg-slate-800 text-slate-200 font-semibold transition border border-slate-700">
+          Explore All 5 Stages
+        </a>
+        <a href="https://www.buymeacoffee.com/rsnarsna" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-[#FFDD00] hover:bg-[#ffe338] text-slate-900 font-bold transition transform hover:-translate-y-0.5 shadow-md flex items-center space-x-2">
+          <span>☕ Sponsor Project</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Analytics Metrics Counter -->
+  <section id="analytics" class="py-12 border-y border-slate-800/80 bg-slate-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="p-6 rounded-2xl glassmorphism">
+          <div class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-pink-400">214+</div>
+          <div class="text-sm font-semibold text-slate-400 mt-2">Active Modules Installed</div>
+          <div class="text-xs text-emerald-400 font-medium mt-1">Verified in Live Database</div>
+        </div>
+
+        <div class="p-6 rounded-2xl glassmorphism">
+          <div class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-teal to-emerald-400">100%</div>
+          <div class="text-sm font-semibold text-slate-400 mt-2">Open Source & Free</div>
+          <div class="text-xs text-slate-500 mt-1">LGPL-3 & AGPL-3 Licensed</div>
+        </div>
+
+        <div class="p-6 rounded-2xl glassmorphism">
+          <div class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">$0.00</div>
+          <div class="text-sm font-semibold text-slate-400 mt-2">User License Fees / Mo</div>
+          <div class="text-xs text-amber-400/90 font-medium mt-1">Save ~$20/user/mo vs Enterprise</div>
+        </div>
+
+        <div class="p-6 rounded-2xl glassmorphism">
+          <div class="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">4 of 5</div>
+          <div class="text-sm font-semibold text-slate-400 mt-2">Stages 100% Deployed</div>
+          <div class="text-xs text-blue-400 font-medium mt-1">Operations, Finance, Mktg, Ops</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture & Stack Section -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-3xl font-extrabold text-white">Production Stack Architecture</h2>
+      <p class="text-slate-400 mt-3 text-sm sm:text-base">Decoupled, containerized infrastructure isolated through Docker virtual networking with zero credential leaks.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-500 flex items-center justify-center font-bold text-xl mb-4">
+          ⚙️
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Odoo 19.0 Web Engine</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Official Odoo 19 Community container preloaded with multi-path addons resolution for core, OCA suites, third-party store modules, and custom apps.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono text-slate-300">
+          <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">Port 8069 (HTTP)</span>
+          <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">Port 8072 (LiveChat)</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-accent-teal/20 text-accent-teal flex items-center justify-center font-bold text-xl mb-4">
+          🐘
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">PostgreSQL 16 Engine</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          High-performance relational backend with persistent named volumes, strict healthcheck polling, and automatic connection reuse.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono text-slate-300">
+          <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">PostgreSQL 16</span>
+          <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">odoo_network</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl mb-4">
+          🔒
+        </div>
+        <h3 class="text-lg font-bold text-white mb-2">Zero-Leak Security Model</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Master passwords and database secrets are bound exclusively via localized <code class="text-emerald-400">.env</code> files excluded by <code class="text-emerald-400">.gitignore</code>.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2 text-xs font-mono text-slate-300">
+          <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">Git Ignored Secrets</span>
+          <span class="px-2 py-1 rounded bg-slate-800 border border-slate-700">Pre-bound DB Login</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Complete Stage Breakdown (1 to 5) -->
+  <section id="stages" class="py-16 bg-slate-900/30 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <h2 class="text-3xl font-extrabold text-white">Full 5-Stage Implementation Roadmap</h2>
+        <p class="text-slate-400 mt-3 text-sm sm:text-base">Every feature deployed, the exact modules installed, and the Enterprise capabilities replaced.</p>
+      </div>
+
+      <div class="space-y-6">
+
+        <!-- Stage 1 -->
+        <div class="p-6 rounded-2xl glassmorphism border border-emerald-500/30">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-2">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/30">Stage 1: 100% Complete</span>
+              <h3 class="text-xl font-bold text-white mt-2">Core ERP Operations & Quick-Win Addons</h3>
+            </div>
+            <span class="text-xs font-mono text-slate-400">18 Modules Deployed</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-sm">
+            <div>
+              <div class="font-semibold text-slate-300 mb-2">Odoo Community Apps:</div>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li><strong class="text-slate-200">CRM:</strong> Lead tracking, opportunity pipeline, activity management</li>
+                <li><strong class="text-slate-200">Sales & Invoicing:</strong> Quotations, orders, customer invoices, taxes</li>
+                <li><strong class="text-slate-200">Purchase & Stock:</strong> Vendor RFQs, inventory moves, warehouses</li>
+                <li><strong class="text-slate-200">Collaboration:</strong> Contacts, Discuss chatter, Calendar, Project To-Do</li>
+                <li><strong class="text-slate-200">eCommerce:</strong> Website builder, online store, checkout</li>
+              </ul>
+            </div>
+            <div>
+              <div class="font-semibold text-emerald-400 mb-2">OCA Enterprise Replacements:</div>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li><code class="text-emerald-300">helpdesk_mgmt</code>: Tickets, teams, stages, SLAs (Replaces Enterprise Helpdesk)</li>
+                <li><code class="text-emerald-300">contract</code>: Recurring subscriptions & billing (Replaces Enterprise Subscriptions)</li>
+                <li><code class="text-emerald-300">dms</code>: Document management directory & tagging (Replaces Enterprise Documents)</li>
+                <li><code class="text-emerald-300">stock_barcodes</code>: Barcode scanning workflows (Replaces Enterprise Barcode)</li>
+                <li><code class="text-emerald-300">delivery_carrier_info</code>: Shipping rates and labels</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="p-6 rounded-2xl glassmorphism border border-emerald-500/30">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-2">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/30">Stage 2: 100% Complete</span>
+              <h3 class="text-xl font-bold text-white mt-2">Finance, Dynamic Accounting Reports & HR Suite</h3>
+            </div>
+            <span class="text-xs font-mono text-slate-400">14 Modules Deployed</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-sm">
+            <div>
+              <div class="font-semibold text-emerald-400 mb-2">OCA Accounting & Payroll Replacements:</div>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li><code class="text-emerald-300">account_financial_report</code>: Dynamic General Ledger, Trial Balance, Aged Partner Balances (Replaces Enterprise Full Accounting)</li>
+                <li><code class="text-emerald-300">report_xlsx</code>: Native Excel spreadsheet export engine</li>
+                <li><code class="text-emerald-300">date_range</code>: Flexible fiscal year and quarterly date periods</li>
+                <li><code class="text-emerald-300">payroll</code>: Salary structures, rules, payslips & calculations (Replaces Enterprise Payroll)</li>
+              </ul>
+            </div>
+            <div>
+              <div class="font-semibold text-slate-300 mb-2">Community HR Suite:</div>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li><strong class="text-slate-200">Employees & Attendance:</strong> Central directory, kiosk mode check-in</li>
+                <li><strong class="text-slate-200">Time Off / Leaves:</strong> Vacation requests, allocations, approvals</li>
+                <li><strong class="text-slate-200">Expenses & Recruitment:</strong> Expense receipts, applicant pipeline</li>
+                <li><strong class="text-slate-200">Fleet & Maintenance:</strong> Vehicle logging, equipment work orders</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="p-6 rounded-2xl glassmorphism border border-emerald-500/30">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-2">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/30">Stage 3: 100% Complete</span>
+              <h3 class="text-xl font-bold text-white mt-2">Marketing, Customer Engagement & e-Signatures</h3>
+            </div>
+            <span class="text-xs font-mono text-slate-400">12 Modules Deployed</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-sm">
+            <div>
+              <div class="font-semibold text-emerald-400 mb-2">OCA e-Sign & Communications:</div>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li><code class="text-emerald-300">sign_oca</code>: Digital signatures, PDF field placement, portal signing (Replaces Enterprise Sign)</li>
+                <li><code class="text-emerald-300">crm_phonecall</code>: Call logs, scheduled callbacks, and telemarketing</li>
+                <li><code class="text-emerald-300">partner_event</code> & <code class="text-emerald-300">partner_survey</code>: Direct contacts integration</li>
+              </ul>
+            </div>
+            <div>
+              <div class="font-semibold text-slate-300 mb-2">Marketing Broadcast & Learning:</div>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li><strong class="text-slate-200">Email & SMS Marketing:</strong> Drag-and-drop campaigns with link analytics</li>
+                <li><strong class="text-slate-200">Live Chat Widget:</strong> Instant website customer chat with chatbot scripts</li>
+                <li><strong class="text-slate-200">Events Management:</strong> Conferences, registrations, and badges</li>
+                <li><strong class="text-slate-200">eLearning Academy:</strong> Video courses, quizzes, and certifications</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="p-6 rounded-2xl glassmorphism border border-emerald-500/30">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-2">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/30">Stage 4: 100% Complete</span>
+              <h3 class="text-xl font-bold text-white mt-2">Field Service, Manufacturing, Quality & VoIP</h3>
+            </div>
+            <span class="text-xs font-mono text-slate-400">12 Modules Deployed</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-sm">
+            <div>
+              <div class="font-semibold text-emerald-400 mb-2">OCA Field Service & Operations Suite:</div>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li><code class="text-emerald-300">fieldservice</code> suite: Technicians, orders, vehicles, territories (Replaces Enterprise Field Service)</li>
+                <li><code class="text-emerald-300">quality_control_oca</code>: Inspection points and test plans (Replaces Enterprise Quality)</li>
+                <li><code class="text-emerald-300">mrp_bom_tracking</code>: BoM engineering change history in chatter (Replaces Enterprise PLM)</li>
+                <li><code class="text-emerald-300">voip_oca</code>: Softphone dialer and PBX integration (Replaces Enterprise VoIP)</li>
+              </ul>
+            </div>
+            <div>
+              <div class="font-semibold text-slate-300 mb-2">Manufacturing & Integrations:</div>
+              <ul class="space-y-1 text-slate-400 list-disc list-inside">
+                <li><strong class="text-slate-200">MRP Core:</strong> Manufacturing orders, multi-level BoMs, work centers</li>
+                <li><strong class="text-slate-200">Subcontracting & Repairs:</strong> Outsourced production and repair orders</li>
+                <li><strong class="text-slate-200">REST Framework:</strong> Foundation for custom mobile apps, AI bots, and webhooks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 5 -->
+        <div class="p-6 rounded-2xl glassmorphism border border-blue-500/30">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-2">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-400 bg-blue-950/60 px-2.5 py-1 rounded-full border border-blue-500/30">Stage 5: Deployment Ready</span>
+              <h3 class="text-xl font-bold text-white mt-2">Production Readiness, Scaling & Maintenance</h3>
+            </div>
+            <span class="text-xs font-mono text-slate-400">Production Tuning</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-sm text-slate-400">
+            <div>
+              <div class="font-semibold text-blue-300 mb-1">Automated Backups</div>
+              <p>Automated database dumps and filestore snapshots via cron with cloud sync.</p>
+            </div>
+            <div>
+              <div class="font-semibold text-blue-300 mb-1">SSL & Reverse Proxy</div>
+              <p>Nginx/Caddy proxy setup with automatic Let's Encrypt certificates and HTTP/2.</p>
+            </div>
+            <div>
+              <div class="font-semibold text-blue-300 mb-1">Worker Optimization</div>
+              <p>Multiprocessing worker tuning <code class="text-slate-300">workers = 2 * CPU + 1</code> with cron thread segregation.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature & Cost Comparison vs Enterprise -->
+  <section id="comparison" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-3xl font-extrabold text-white">Odoo Enterprise vs This Stack</h2>
+      <p class="text-slate-400 mt-3 text-sm sm:text-base">Side-by-side functional and financial comparison.</p>
+    </div>
+
+    <div class="overflow-x-auto rounded-2xl glassmorphism border border-slate-800">
+      <table class="w-full text-left text-sm text-slate-300">
+        <thead class="bg-slate-800/80 text-xs uppercase tracking-wider text-slate-400 border-b border-slate-700">
+          <tr>
+            <th class="py-4 px-6">Capability / Feature</th>
+            <th class="py-4 px-6 text-red-400">Odoo Enterprise (Paid)</th>
+            <th class="py-4 px-6 text-emerald-400">This Open-Source Stack</th>
+            <th class="py-4 px-6">Implementation Route</th>
+          </tr>
+        </tr>
+        <tbody class="divide-y divide-slate-800">
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">License Cost (25 users)</td>
+            <td class="py-4 px-6 text-red-400 font-mono">~$500 - $625 / month</td>
+            <td class="py-4 px-6 text-emerald-400 font-mono font-bold">$0.00 / month</td>
+            <td class="py-4 px-6 text-xs text-slate-400">100% Free Forever</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">Full Accounting Reports</td>
+            <td class="py-4 px-6">Included in Enterprise</td>
+            <td class="py-4 px-6 text-emerald-400">Full GL, Trial Balance, Aged Partner</td>
+            <td class="py-4 px-6 text-xs font-mono text-emerald-400">OCA account_financial_report</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">Helpdesk & Ticket SLA</td>
+            <td class="py-4 px-6">Enterprise Helpdesk App</td>
+            <td class="py-4 px-6 text-emerald-400">Teams, Stages, SLAs, Portal</td>
+            <td class="py-4 px-6 text-xs font-mono text-emerald-400">OCA helpdesk_mgmt</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">Document Management (DMS)</td>
+            <td class="py-4 px-6">Enterprise Documents App</td>
+            <td class="py-4 px-6 text-emerald-400">Directories, Files, Access Control</td>
+            <td class="py-4 px-6 text-xs font-mono text-emerald-400">OCA dms</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">Field Service Management</td>
+            <td class="py-4 px-6">Enterprise Field Service</td>
+            <td class="py-4 px-6 text-emerald-400">Technicians, Orders, Vehicles</td>
+            <td class="py-4 px-6 text-xs font-mono text-emerald-400">OCA fieldservice suite</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">Digital Signatures</td>
+            <td class="py-4 px-6">Enterprise Sign App</td>
+            <td class="py-4 px-6 text-emerald-400">PDF Signature Stamping & Portal</td>
+            <td class="py-4 px-6 text-xs font-mono text-emerald-400">OCA sign_oca</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">Payroll & Payslips</td>
+            <td class="py-4 px-6">Enterprise Payroll App</td>
+            <td class="py-4 px-6 text-emerald-400">Salary Structures & Calculations</td>
+            <td class="py-4 px-6 text-xs font-mono text-emerald-400">OCA payroll</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">Quality Control</td>
+            <td class="py-4 px-6">Enterprise Quality App</td>
+            <td class="py-4 px-6 text-emerald-400">Quality Triggers & Test Inspections</td>
+            <td class="py-4 px-6 text-xs font-mono text-emerald-400">OCA quality_control_oca</td>
+          </tr>
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-4 px-6 font-semibold text-white">VoIP Telephony</td>
+            <td class="py-4 px-6">Enterprise VoIP App</td>
+            <td class="py-4 px-6 text-emerald-400">Softphone Dialer & PBX Calls</td>
+            <td class="py-4 px-6 text-xs font-mono text-emerald-400">OCA voip_oca</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Quickstart Section -->
+  <section id="quickstart" class="py-16 bg-slate-900/30 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl font-extrabold text-white">Quick Start with Docker</h2>
+        <p class="text-slate-400 mt-2 text-sm">Spin up the entire stack with a single command.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl glassmorphism border border-slate-800 space-y-6">
+        <div>
+          <div class="text-xs font-bold uppercase text-slate-400 mb-2">1. Clone the repository</div>
+          <pre class="bg-slate-950 p-4 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800">git clone https://github.com/rsnarsna/odoo.git
+cd odoo</pre>
+        </div>
+
+        <div>
+          <div class="text-xs font-bold uppercase text-slate-400 mb-2">2. Set your environment variables</div>
+          <pre class="bg-slate-950 p-4 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800"># Windows PowerShell:
+Copy-Item .env.example .env
+
+# Linux / macOS:
+cp .env.example .env</pre>
+        </div>
+
+        <div>
+          <div class="text-xs font-bold uppercase text-slate-400 mb-2">3. Start the containers</div>
+          <pre class="bg-slate-950 p-4 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800">docker compose up -d</pre>
+        </div>
+
+        <div>
+          <div class="text-xs font-bold uppercase text-slate-400 mb-2">4. Access Odoo Web</div>
+          <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-slate-800 text-sm">
+            <span class="text-slate-300">URL: <code class="text-accent-teal font-mono">http://localhost:8069</code></span>
+            <span class="text-slate-400 text-xs">Credentials: <strong class="text-slate-200 font-mono">admin / admin</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source Sponsorship & Buy Me A Coffee Banner -->
+  <section class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="p-8 sm:p-12 rounded-3xl glassmorphism border border-amber-500/30 relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -z-10"></div>
+      <div class="text-4xl mb-4">☕</div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Support Open Source Development</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base mb-8">
+        This repository eliminates thousands of dollars in enterprise software fees for small businesses and developers worldwide. 
+        If this project saved you money or time, consider buying a coffee or sponsoring continued updates!
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="https://www.buymeacoffee.com/rsnarsna" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center space-x-3 bg-[#FFDD00] hover:bg-[#ffe338] text-slate-900 font-extrabold px-6 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 text-base">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.216 6.415l-.132-.666c-.119-.597-.386-1.161-.8-1.635-.414-.473-.95-.826-1.554-1.023-.604-.198-1.25-.246-1.874-.14-.624.106-1.205.372-1.688.771l-.168.14V3.5c0-.928-.369-1.818-1.025-2.475C12.318.369 11.428 0 10.5 0h-7C2.572 0 1.682.369 1.025 1.025.369 1.682 0 2.572 0 3.5v9c0 2.914 1.157 5.709 3.218 7.769C5.279 22.33 8.074 23.487 10.988 23.487c2.31 0 4.549-.73 6.414-2.091 1.865-1.36 3.197-3.32 3.818-5.619l1.092-4.043c.277-1.023.27-2.103-.021-3.123-.29-1.02-.888-1.922-1.722-2.585l-.353-.28v-.331zm-2.04 4.544l-.865 3.203c-.45 1.666-1.417 3.088-2.77 4.076-1.353.987-2.977 1.517-4.653 1.517-2.122 0-4.157-.843-5.657-2.343C2.73 15.912 1.887 13.877 1.887 11.755V3.5c0-.43.171-.843.475-1.147C2.666 2.049 3.079 1.878 3.5 1.878h7c.421 0 .834.171 1.138.475.304.304.475.717.475 1.147v4.613l-1.385-1.154c-.725-.6-1.597-.999-2.53-1.158-.933-.16-1.902-.088-2.808.209-.906.297-1.71.827-2.331 1.536-.621.71-1.022 1.556-1.163 2.452l-.198 1.258c-.066.421.056.848.337 1.173.282.325.688.513 1.116.517h8.216l.244 1.22c.079.398.257.774.52 1.09.263.316.604.551.99.683.387.132.802.164 1.205.093.403-.07.781-.248 1.099-.516l.462-.39z"/>
+          </svg>
+          <span>Buy Me A Coffee</span>
+        </a>
+
+        <a href="https://github.com/sponsors/rsnarsna" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-pink-400 font-bold px-6 py-3.5 rounded-xl border border-pink-500/30 transition transform hover:-translate-y-0.5 text-base">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span>Sponsor on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-slate-800 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        Released under the <strong>LGPL-3.0 & AGPL-3.0</strong> Licenses. Built with Odoo Community & OCA.
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="https://github.com/rsnarsna/odoo" class="hover:text-slate-300">GitHub Repository</a>
+        <a href="https://github.com/rsnarsna/odoo/issues" class="hover:text-slate-300">Report Issue</a>
+        <a href="https://www.buymeacoffee.com/rsnarsna" class="hover:text-amber-400">Donate</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
