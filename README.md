@@ -3,7 +3,7 @@
 <div align="center">
 
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0%20Community-875A7B?style=for-the-badge&logo=odoo&logoColor=white)](https://www.odoo.com)
-[![Active Modules](https://img.shields.io/badge/Active%20Modules-214%2B%20Installed-emerald?style=for-the-badge&logo=checkmarx&logoColor=white)](#-repository-analytics--system-metrics)
+[![Active Modules](https://img.shields.io/badge/Active%20Modules-278%2B%20Installed-emerald?style=for-the-badge&logo=checkmarx&logoColor=white)](#-repository-analytics--system-metrics)
 [![Docker Compose](https://img.shields.io/badge/Docker-Compose%20v2-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org)
 [![GitHub Pages](https://img.shields.io/badge/Documentation-GitHub%20Pages-00A09D?style=for-the-badge&logo=githubpages&logoColor=white)](https://rsnarsna.github.io/odoo/)
@@ -43,7 +43,7 @@
 |---|:---:|---|
 | **Odoo Core Engine** | **19.0-20260305** | Official Docker upstream image |
 | **Database Engine** | **PostgreSQL 16** | Containerized with persistent storage & health check |
-| **Total Active Modules** | **214 Modules** | Verified active in PostgreSQL `ir_module_module` |
+| **Total Active Modules** | **278 Modules** | Verified active in PostgreSQL `ir_module_module` |
 | **Deployed Stages** | **4 of 5 (100% ERP)** | Core, Finance/HR, Marketing/Sign, Operations/VoIP |
 | **User License Cost** | **$0.00 / month** | Completely free and open-source licenses |
 | **Estimated Cost Savings** | **~$6,000 / year** | Based on a standard 25-user Enterprise deployment |
