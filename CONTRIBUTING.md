@@ -40,5 +40,5 @@ This project adheres to the Contributor Covenant. By participating, you are expe
 
 If this stack helps your company or personal project, please consider:
 - ⭐ Giving the repository a star on GitHub!
-- ☕ Buying us a coffee at: [https://www.buymeacoffee.com/rsnarsna](https://www.buymeacoffee.com/rsnarsna)
+- ☕ Buying us a coffee at: [https://buymeacoffee.com/narayanansw](https://buymeacoffee.com/narayanansw)
 - 💖 Sponsoring through [GitHub Sponsors](https://github.com/sponsors/rsnarsna)

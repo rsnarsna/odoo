@@ -10,7 +10,7 @@
 
 <br>
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate%20%E2%98%95-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/rsnarsna)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate%20%E2%98%95-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/narayanansw)
 [![Sponsor](https://img.shields.io/badge/Sponsor%20GitHub-%E2%99%A5-pink?style=for-the-badge&logo=github-sponsors)](https://github.com/sponsors/rsnarsna)
 [![License: LGPL-3](https://img.shields.io/badge/License-LGPL--3.0%20%7C%20AGPL--3.0-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/lgpl-3.0)
 
@@ -246,7 +246,7 @@ This open-source architecture saves businesses thousands of dollars every year i
 
 <div align="center">
 
-<a href="https://www.buymeacoffee.com/rsnarsna" target="_blank" rel="noopener noreferrer">
+<a href="https://buymeacoffee.com/narayanansw" target="_blank" rel="noopener noreferrer">
   <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" width="210">
 </a>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -259,6 +259,48 @@ This open-source architecture saves businesses thousands of dollars every year i
 Your sponsorship helps maintain compatibility with upcoming Odoo releases, test new OCA modules, and produce automated deployment recipes!
 
 </div>
+
+---
+
+## 🌐 GitHub Pages Setup & Troubleshooting Guide
+
+If visiting `https://rsnarsna.github.io/odoo/` shows a 404 or fails to load, follow these steps to activate it:
+
+### Why GitHub Pages Might Not Be Active
+1. **GitHub Pages is not enabled by default** on newly created repositories. You must select a deployment source in repository settings.
+2. **Jekyll Processing Interference:** Traditional GitHub Pages tries to parse Markdown using Jekyll, which fails on static single-page apps. This repository includes `.nojekyll` in `/docs` to disable Jekyll and serve the responsive HTML portal instantly.
+
+### How to Activate in 2 Clicks:
+1. Open your repository on GitHub and navigate to:
+   👉 **Settings** > **Pages** (or visit `https://github.com/rsnarsna/odoo/settings/pages`)
+2. Under **Build and deployment > Source**, choose one of the two options:
+   * **Option A (Recommended - Instant):**
+     * Select **Deploy from a branch**
+     * Branch: `main`
+     * Folder: `/docs`
+     * Click **Save**
+   * **Option B (GitHub Actions):**
+     * Select **GitHub Actions**
+     * GitHub will automatically trigger the included workflow at `.github/workflows/pages.yml`.
+3. Within 60 seconds, your portal is live at:
+   **`https://rsnarsna.github.io/odoo/`**
+
+---
+
+## 📈 Enterprise Log Monitoring & Analytics with Splunk
+
+For enterprise teams running **Splunk** (e.g., `splunk/universalforwarder`):
+1. **Docker Logging Driver:** Configure Docker daemon or `docker-compose.yml` to forward Odoo web and database stdout/stderr to Splunk HTTP Event Collector (HEC):
+   ```yaml
+   logging:
+     driver: "splunk"
+     options:
+       splunk-token: "YOUR_SPLUNK_HEC_TOKEN"
+       splunk-url: "https://your-splunk-instance:8088"
+       splunk-insecureskipverify: "true"
+       tag: "{{.Name}}/{{.ID}}"
+   ```
+2. **Log File Collection:** Alternatively, configure `odoo.conf` with `logfile = /var/log/odoo/odoo.log` and mount a volume monitored by the Splunk Universal Forwarder to index slow queries, authentication logs, and worker stats.
 
 ---
 
