@@ -18,7 +18,7 @@
   <b>A turnkey, containerized ERP architecture powered by Odoo 19.0 Community and battle-tested Odoo Community Association (OCA) suites. Replace expensive Enterprise subscriptions (Accounting, Helpdesk, Subscriptions, Documents, Field Service, Quality Control, VoIP & e-Sign) with 100% open-source software and $0 recurring user license fees.</b>
 </p>
 
-[**🌐 View Interactive Documentation & Analytics Website (GitHub Pages)**](https://rsnarsna.github.io/odoo/)
+[**🌐 View Interactive Documentation & Analytics Portal**](https://rsnarsna.github.io/odoo/) &nbsp;|&nbsp; [**📖 Open Source Apps User Guide & Setup Manual (Next Page)**](https://rsnarsna.github.io/odoo/guide.html)
 
 </div>
 

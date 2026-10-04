@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo 19 + OCA Open Source Apps User Guide & Setup Manual</title>
+  <meta name="description" content="Comprehensive step-by-step installation, setup, and operational guide for all 278+ open-source Odoo 19 Community and OCA enterprise apps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fbf7fc',
+              100: '#f5edf8',
+              500: '#875A7B',
+              600: '#714B67',
+              700: '#5a3b52',
+            },
+            accent: {
+              teal: '#00A09D',
+              amber: '#F59E0B',
+              emerald: '#10B981',
+              blue: '#2563EB',
+              purple: '#8B5CF6'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glassmorphism {
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .badge-glow {
+      box-shadow: 0 0 15px rgba(0, 160, 157, 0.35);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    pre {
+      scrollbar-width: thin;
+      scrollbar-color: #374151 #111827;
+    }
+  </style>
+</head>
+<body class="bg-[#0B0F19] text-slate-100 font-sans min-h-screen selection:bg-brand-500 selection:text-white">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-50 glassmorphism border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <a href="index.html" class="flex items-center space-x-3 group">
+          <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-brand-500 to-accent-teal flex items-center justify-center font-bold text-white text-lg shadow-lg group-hover:scale-105 transition transform">
+            Ω
+          </div>
+          <div>
+            <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Odoo 19 + OCA Docs</span>
+            <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-100 border border-brand-500/30">User & Setup Guide</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center space-x-3 sm:space-x-4 text-sm font-medium">
+        <a href="index.html" class="inline-flex items-center space-x-1.5 text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 px-3 py-1.5 rounded-lg border border-slate-700 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>Overview</span>
+        </a>
+
+        <a href="#setup" class="hidden lg:inline-block text-slate-400 hover:text-white transition">Setup Guide</a>
+        <a href="#apps" class="hidden lg:inline-block text-slate-400 hover:text-white transition">Apps Manual</a>
+        <a href="#troubleshooting" class="hidden lg:inline-block text-slate-400 hover:text-white transition">FAQ</a>
+
+        <!-- Buy Me A Coffee Button -->
+        <a href="https://buymeacoffee.com/narayanansw" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center space-x-2 bg-[#FFDD00] text-slate-900 font-bold px-3.5 py-1.5 rounded-lg shadow-md hover:bg-[#ffe338] transition transform hover:-translate-y-0.5">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.216 6.415l-.132-.666c-.119-.597-.386-1.161-.8-1.635-.414-.473-.95-.826-1.554-1.023-.604-.198-1.25-.246-1.874-.14-.624.106-1.205.372-1.688.771l-.168.14V3.5c0-.928-.369-1.818-1.025-2.475C12.318.369 11.428 0 10.5 0h-7C2.572 0 1.682.369 1.025 1.025.369 1.682 0 2.572 0 3.5v9c0 2.914 1.157 5.709 3.218 7.769C5.279 22.33 8.074 23.487 10.988 23.487c2.31 0 4.549-.73 6.414-2.091 1.865-1.36 3.197-3.32 3.818-5.619l1.092-4.043c.277-1.023.27-2.103-.021-3.123-.29-1.02-.888-1.922-1.722-2.585l-.353-.28v-.331zm-2.04 4.544l-.865 3.203c-.45 1.666-1.417 3.088-2.77 4.076-1.353.987-2.977 1.517-4.653 1.517-2.122 0-4.157-.843-5.657-2.343C2.73 15.912 1.887 13.877 1.887 11.755V3.5c0-.43.171-.843.475-1.147C2.666 2.049 3.079 1.878 3.5 1.878h7c.421 0 .834.171 1.138.475.304.304.475.717.475 1.147v4.613l-1.385-1.154c-.725-.6-1.597-.999-2.53-1.158-.933-.16-1.902-.088-2.808.209-.906.297-1.71.827-2.331 1.536-.621.71-1.022 1.556-1.163 2.452l-.198 1.258c-.066.421.056.848.337 1.173.282.325.688.513 1.116.517h8.216l.244 1.22c.079.398.257.774.52 1.09.263.316.604.551.99.683.387.132.802.164 1.205.093.403-.07.781-.248 1.099-.516l.462-.39z"/>
+          </svg>
+          <span class="hidden sm:inline">Buy me a coffee</span>
+        </a>
+
+        <!-- GitHub Repo Link -->
+        <a href="https://github.com/rsnarsna/odoo" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-lg border border-slate-700 transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span class="hidden sm:inline">GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-16 overflow-hidden border-b border-slate-800/80">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-brand-500/15 rounded-full blur-[140px] -z-10"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-accent-teal/15 border border-accent-teal/30 text-accent-teal text-xs font-semibold mb-5">
+        <span>📖 Complete Operation & Installation Manual</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+        How to Use All 278+ Open Source Apps<br>
+        <span class="bg-gradient-to-r from-brand-500 via-pink-400 to-accent-teal bg-clip-text text-transparent">
+          Complete Setup & Operation Guide
+        </span>
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed mb-8">
+        Learn how to install, configure, optimize, and operate every module in this enterprise-grade stack: 
+        from core CRM and Point of Sale to recurring Subscriptions, OCA Dynamic Accounting, Helpdesk, Field Service, e-Signatures, and APIs.
+      </p>
+
+      <!-- Quick Action Badges -->
+      <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-semibold">
+        <a href="#setup" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+          🚀 1. Installation Walkthrough
+        </a>
+        <a href="#apps" class="px-4 py-2 rounded-xl bg-brand-500/20 hover:bg-brand-500/30 text-brand-100 border border-brand-500/40 transition">
+          📦 2. How to Use All Apps
+        </a>
+        <a href="#troubleshooting" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+          ⚡ 3. Troubleshooting & FAQ
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Table of Contents & Quick Navigation -->
+  <section class="py-8 bg-slate-900/50 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="p-6 rounded-2xl glassmorphism">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center space-x-2">
+          <svg class="w-4 h-4 text-accent-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+          <span>Manual Index & Jump Links</span>
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+          <a href="#setup-prereq" class="text-slate-300 hover:text-accent-teal transition">• 1. Prerequisites & Engine</a>
+          <a href="#setup-secrets" class="text-slate-300 hover:text-accent-teal transition">• 2. Credentials Isolation (.env)</a>
+          <a href="#setup-compose" class="text-slate-300 hover:text-accent-teal transition">• 3. Docker Compose Orchestration</a>
+          <a href="#setup-deadlock" class="text-slate-300 hover:text-accent-teal transition">• 4. Deadlock-Free Batch Installs</a>
+          
+          <a href="#app-core" class="text-slate-300 hover:text-brand-500 transition">• 5. CRM, Sales & Invoicing</a>
+          <a href="#app-pos" class="text-slate-300 hover:text-brand-500 transition">• 6. Point of Sale & Restaurant</a>
+          <a href="#app-oca-finance" class="text-slate-300 hover:text-brand-500 transition">• 7. Dynamic Financial Reports</a>
+          <a href="#app-subscriptions" class="text-slate-300 hover:text-brand-500 transition">• 8. Recurring Subscriptions</a>
+
+          <a href="#app-helpdesk" class="text-slate-300 hover:text-accent-emerald transition">• 9. Support Helpdesk (OCA)</a>
+          <a href="#app-dms" class="text-slate-300 hover:text-accent-emerald transition">• 10. Document Management (DMS)</a>
+          <a href="#app-fieldservice" class="text-slate-300 hover:text-accent-emerald transition">• 11. Field Service Management</a>
+          <a href="#app-sign" class="text-slate-300 hover:text-accent-emerald transition">• 12. Digital e-Signatures</a>
+
+          <a href="#app-mrp" class="text-slate-300 hover:text-amber-400 transition">• 13. MRP & Quality Control</a>
+          <a href="#app-events" class="text-slate-300 hover:text-amber-400 transition">• 14. Website Events & Booths</a>
+          <a href="#app-api" class="text-slate-300 hover:text-amber-400 transition">• 15. REST Framework & Custom Apps</a>
+          <a href="#troubleshooting" class="text-slate-300 hover:text-amber-400 transition">• 16. Maintenance & Troubleshooting</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 1: Installation & Setup Walkthrough -->
+  <section id="setup" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10">
+      <div class="inline-flex items-center space-x-2 text-xs font-bold text-accent-teal uppercase tracking-widest mb-2">
+        <span>Part 1</span>
+        <span>•</span>
+        <span>Architecture & Deployment</span>
+      </div>
+      <h2 class="text-3xl font-bold text-white">Full Installation & Setup Walkthrough</h2>
+      <p class="text-slate-400 text-sm mt-2">Step-by-step instructions to get your high-performance containerized ERP running from bare metal.</p>
+    </div>
+
+    <!-- Step 1 & 2 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <!-- Step 1 -->
+      <div id="setup-prereq" class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="h-8 w-8 rounded-lg bg-accent-teal/20 text-accent-teal font-bold flex items-center justify-center text-sm border border-accent-teal/30">1</div>
+          <h3 class="text-lg font-bold text-white">Prerequisites & Repository Clone</h3>
+        </div>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Ensure you have <strong>Docker Engine 24+</strong> and <strong>Docker Compose v2</strong> installed. Minimum host specs: 2 vCPUs, 4GB RAM (8GB recommended for full 278+ module suites).
+        </p>
+        <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800">git clone https://github.com/rsnarsna/odoo.git
+cd odoo</pre>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="setup-secrets" class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="h-8 w-8 rounded-lg bg-brand-500/20 text-brand-100 font-bold flex items-center justify-center text-sm border border-brand-500/30">2</div>
+          <h3 class="text-lg font-bold text-white">Credential Isolation (.env)</h3>
+        </div>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Copy the example environment template to create your production secret file. Secrets in <code class="text-brand-100 font-mono">.env</code> are completely git-ignored.
+        </p>
+        <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800"># Windows:
+Copy-Item .env.example .env
+
+# Linux / Mac:
+cp .env.example .env</pre>
+      </div>
+    </div>
+
+    <!-- Step 3 & 4 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <!-- Step 3 -->
+      <div id="setup-compose" class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="h-8 w-8 rounded-lg bg-accent-emerald/20 text-accent-emerald font-bold flex items-center justify-center text-sm border border-accent-emerald/30">3</div>
+          <h3 class="text-lg font-bold text-white">Start Containers (One-Command)</h3>
+        </div>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Launches PostgreSQL 16 (<code class="text-slate-300 font-mono">odoo_db</code>) and Odoo 19.0 Community (<code class="text-slate-300 font-mono">odoo_web</code>) with all addons mounted.
+        </p>
+        <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800">docker compose up -d</pre>
+        <div class="mt-3 text-[11px] text-slate-400">
+          Verify health: <code class="text-accent-teal font-mono">docker ps</code> (odoo_db must show <em class="text-emerald-400">healthy</em>).
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div id="setup-deadlock" class="p-6 rounded-2xl glassmorphism border border-amber-500/30 bg-amber-950/10">
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="h-8 w-8 rounded-lg bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-sm border border-amber-500/40">4</div>
+          <h3 class="text-lg font-bold text-amber-300">The "Zero-Lock" Rule (Pro Tip)</h3>
+        </div>
+        <p class="text-slate-300 text-xs leading-relaxed mb-4">
+          <strong>Important:</strong> Never run bulk CLI module installations (<code class="text-amber-200 font-mono">odoo -i ...</code>) while the web container is serving traffic! Concurrency causes PostgreSQL serialization deadlocks.
+        </p>
+        <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800"># 1. Stop web service temporarily
+docker compose stop web
+
+# 2. Run your module installation container
+docker run --rm --network odoo_network -v ... odoo:latest odoo -i <apps> -d odoo --stop-after-init ...
+
+# 3. Restart web service cleanly
+docker compose start web</pre>
+      </div>
+    </div>
+
+    <!-- Step 5: Pre-binding explanation -->
+    <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
+      <h3 class="text-lg font-bold text-white mb-2">⚡ Direct Landing & Database Pre-Binding</h3>
+      <p class="text-slate-400 text-xs leading-relaxed mb-4">
+        Our configuration (<code class="text-accent-teal font-mono">config/odoo.conf</code>) includes <code class="text-slate-200 font-mono">db_name = odoo</code>. This ensures that every visitor lands directly at the clean login portal without being redirected to the database selector or creation manager.
+      </p>
+      <div class="flex items-center justify-between p-4 bg-slate-950 rounded-xl border border-slate-800 text-xs">
+        <span class="text-slate-300">Web Portal URL: <code class="text-accent-teal font-mono">http://localhost:8069/web/login</code></span>
+        <span class="text-slate-400">Default Superuser: <strong class="text-slate-200 font-mono">admin / admin</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 2: How to Use All Open Source Apps (The Comprehensive App Manual) -->
+  <section id="apps" class="py-16 bg-slate-900/40 border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center sm:text-left">
+        <div class="inline-flex items-center space-x-2 text-xs font-bold text-brand-500 uppercase tracking-widest mb-2">
+          <span>Part 2</span>
+          <span>•</span>
+          <span>Operational Handbook</span>
+        </div>
+        <h2 class="text-3xl font-bold text-white">How to Use All Open Source Apps</h2>
+        <p class="text-slate-400 text-sm mt-2">Comprehensive user guide and workflow manuals for the 278+ deployed applications.</p>
+      </div>
+
+      <!-- APP CATEGORY 1: Core Operations -->
+      <div id="app-core" class="mb-12">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="h-8 w-8 rounded-lg bg-blue-500/20 text-blue-400 font-bold flex items-center justify-center text-sm border border-blue-500/30">💼</div>
+          <h3 class="text-xl font-bold text-white">1. Core Business Suite: CRM, Sales & Invoicing</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- CRM -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-blue-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🎯 CRM & Leads</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">crm</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Lead Ingestion:</strong> Incoming website messages automatically convert into CRM leads.</li>
+              <li><strong>Kanban Pipeline:</strong> Drag cards across custom stages (<em>New &rarr; Qualified &rarr; Proposition &rarr; Won</em>).</li>
+              <li><strong>Next Actions:</strong> Schedule calls, meetings, and follow-ups with automatic calendar sync.</li>
+              <li><strong>Lead Probability:</strong> AI-driven scoring estimates win probability automatically.</li>
+            </ul>
+          </div>
+
+          <!-- Sales -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-blue-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📜 Quotations & Sales</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">sale_management</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Quote Builder:</strong> Create professional PDF quotes with custom product bundles and pricelists.</li>
+              <li><strong>Online Client Portal:</strong> Send quotes via email with instant client electronic acceptance.</li>
+              <li><strong>Order Confirmation:</strong> Automatically reserves inventory and generates warehouse pickings.</li>
+              <li><strong>Automated Invoicing:</strong> Invoice based on ordered quantities or delivered quantities.</li>
+            </ul>
+          </div>
+
+          <!-- Invoicing -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-blue-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🧾 Invoicing & Payments</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 border border-blue-500/20">account</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Draft Invoices:</strong> 1-click invoice creation from confirmed sales orders or project milestones.</li>
+              <li><strong>Electronic Invoicing:</strong> XML & PDF EDI export via <code class="text-slate-300 font-mono">account_edi</code>.</li>
+              <li><strong>Check Printing & Deposit:</strong> Full support for preprinted checks and bank deposit slips.</li>
+              <li><strong>Payment Gateways:</strong> Native integration with Stripe, bank wire, and SEPA QR codes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP CATEGORY 2: Retail & Point of Sale (POS) -->
+      <div id="app-pos" class="mb-12">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="h-8 w-8 rounded-lg bg-pink-500/20 text-pink-400 font-bold flex items-center justify-center text-sm border border-pink-500/30">🛒</div>
+          <h3 class="text-xl font-bold text-white">2. Point of Sale (POS), Restaurant & Self-Order</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Retail POS -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-pink-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🏪 Retail Register</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-pink-500/10 text-pink-300 border border-pink-500/20">point_of_sale</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Touchscreen Terminal:</strong> Works offline in browser; syncs automatically upon reconnection.</li>
+              <li><strong>Cash Control:</strong> Open session &rarr; set opening cash balance &rarr; record cash in/out.</li>
+              <li><strong>Barcode Scanner:</strong> Instant product lookup via USB / Bluetooth scanner.</li>
+              <li><strong>Session Closing:</strong> Automatic end-of-day journal entries and bank reconciliations.</li>
+            </ul>
+          </div>
+
+          <!-- Restaurant POS -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-pink-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🍽️ Restaurant & Bar</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-pink-500/10 text-pink-300 border border-pink-500/20">pos_restaurant</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Interactive Floor Plan:</strong> Configure customizable dining rooms, tables, and seat counts.</li>
+              <li><strong>Order Sending:</strong> Dispatch orders directly to kitchen printers or kitchen display screens.</li>
+              <li><strong>Bill Splitting:</strong> Split checks by seat, by item, or divide evenly among guests.</li>
+              <li><strong>Table Transfers:</strong> Move active orders between tables or combine parties seamlessly.</li>
+            </ul>
+          </div>
+
+          <!-- Self Order & Loyalty -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-pink-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📱 QR Self-Order & Loyalty</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-pink-500/10 text-pink-300 border border-pink-500/20">pos_self_order</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Tabletop QR Ordering:</strong> Diners scan QR code on their smartphone to order and pay online.</li>
+              <li><strong>Self-Service Kiosk:</strong> Full-screen kiosk mode for customer ordering stations.</li>
+              <li><strong>Loyalty Programs:</strong> Earn reward points per dollar spent; redeem points for gifts or discounts.</li>
+              <li><strong>Promo Cards:</strong> Create digital coupon codes and gift cards (<code class="text-slate-300 font-mono">pos_loyalty</code>).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP CATEGORY 3: OCA Financial Reporting & Subscriptions -->
+      <div id="app-oca-finance" class="mb-12">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="h-8 w-8 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-sm border border-emerald-500/30">📊</div>
+          <h3 class="text-xl font-bold text-white">3. OCA Enterprise Replacements: Accounting & Subscriptions</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Dynamic Financial Reports -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-emerald-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📈 Financial Reports (OCA)</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">account_financial_report</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Replaces Enterprise Accounting:</strong> Free drill-down reports without paying $24/user/mo!</li>
+              <li><strong>Reports Included:</strong> General Ledger, Trial Balance, Aged Partner Balances, Partner Ledger.</li>
+              <li><strong>Interactive Drill-down:</strong> Click any account balance to expand journal items directly.</li>
+              <li><strong>Native Excel Export:</strong> 1-click export to multi-sheet spreadsheets via <code class="text-slate-300 font-mono">report_xlsx</code>.</li>
+            </ul>
+          </div>
+
+          <!-- Subscriptions & Contracts -->
+          <div id="app-subscriptions" class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-emerald-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🔄 Subscriptions & Contracts</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">contract</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Replaces Enterprise Subscriptions:</strong> Full automated recurring billing management.</li>
+              <li><strong>Billing Recurrence:</strong> Set billing frequency (weekly, monthly, quarterly, annual, custom).</li>
+              <li><strong>Automated Renewal:</strong> Cron automatically generates draft recurring customer invoices.</li>
+              <li><strong>Termination Workflows:</strong> Track renewals, contract notices, and cancellations.</li>
+            </ul>
+          </div>
+
+          <!-- Payroll -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-emerald-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>💼 Community Payroll (OCA)</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">payroll</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Salary Structures:</strong> Configure basic salaries, allowances, overtime, and deductions.</li>
+              <li><strong>Employee Contracts:</strong> Define wage rates, working schedule, and tax status.</li>
+              <li><strong>Batch Payslips:</strong> Generate hundreds of employee payslips simultaneously each pay period.</li>
+              <li><strong>Accounting Integration:</strong> Posts journal entries straight to wage and tax expense accounts.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP CATEGORY 4: Helpdesk, DMS, Field Service & e-Sign -->
+      <div id="app-helpdesk" class="mb-12">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="h-8 w-8 rounded-lg bg-purple-500/20 text-purple-400 font-bold flex items-center justify-center text-sm border border-purple-500/30">🛡️</div>
+          <h3 class="text-xl font-bold text-white">4. Operations & Compliance: Helpdesk, DMS, Field Service & Sign</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <!-- Helpdesk -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🎧 Helpdesk (OCA)</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">helpdesk_mgmt</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Ticket Ingestion:</strong> Ingest tickets via email gateway or customer portal.</li>
+              <li><strong>Team Assignment:</strong> Route tickets automatically to dedicated support agents.</li>
+              <li><strong>SLA Monitoring:</strong> Track first response time and target resolution hours.</li>
+            </ul>
+          </div>
+
+          <!-- DMS -->
+          <div id="app-dms" class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📁 Document DMS (OCA)</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">dms</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Cloud Storage:</strong> Categorize corporate files into structured folders and directories.</li>
+              <li><strong>Role-Based Access:</strong> Restrict sensitive folders to HR or Executive teams.</li>
+              <li><strong>File Versioning:</strong> Automatic audit trail and version history of uploaded documents.</li>
+            </ul>
+          </div>
+
+          <!-- Field Service -->
+          <div id="app-fieldservice" class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🔧 Field Service (OCA)</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">fieldservice</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Dispatch Board:</strong> Assign technicians to service orders based on geographic territories.</li>
+              <li><strong>Mobile Execution:</strong> Techs record arrival times, parts used, and work notes.</li>
+              <li><strong>Sign-Off:</strong> Capture client digital signature directly on phone or tablet.</li>
+            </ul>
+          </div>
+
+          <!-- Digital Signatures -->
+          <div id="app-sign" class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>✍️ e-Signatures (OCA)</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">sign_oca</span>
+            </h4>
+            <ul class="text-slate-400 text-xs space-y-2 leading-relaxed">
+              <li><strong>Replaces Enterprise Sign:</strong> Upload PDF agreements, NDAs, and proposals.</li>
+              <li><strong>Field Placement:</strong> Drag & drop signature, initials, date, and text fields.</li>
+              <li><strong>Audit Certificate:</strong> Cryptographic log with signer IP, timestamp, and certified PDF.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP CATEGORY 5: Manufacturing, Events, Marketing & APIs -->
+      <div id="app-mrp" class="mb-6">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="h-8 w-8 rounded-lg bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-sm border border-amber-500/30">🏭</div>
+          <h3 class="text-xl font-bold text-white">5. Manufacturing, Marketing, Website Events & APIs</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <!-- MRP & Quality -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-amber-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>⚙️ MRP & Quality</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">mrp</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Multi-level BoM definitions, work center routings, component reservations, and inspection criteria via <code class="text-slate-300 font-mono">quality_control_oca</code>.
+            </p>
+          </div>
+
+          <!-- Website Events -->
+          <div id="app-events" class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-amber-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🎟️ Events & Booths</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">website_event</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Publish conferences online with ticket tier sales, attendee badges, speaker agenda tracks, and exhibitor booth reservations.
+            </p>
+          </div>
+
+          <!-- Marketing Campaigns -->
+          <div class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-amber-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📣 Email & SMS Marketing</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">mass_mailing</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Visual drag-and-drop newsletter builder, segment contact lists, trigger automated drip sequences, and track real-time open and click rates.
+            </p>
+          </div>
+
+          <!-- REST API & FastAPI -->
+          <div id="app-api" class="p-6 rounded-2xl glassmorphism border border-slate-800 hover:border-amber-500/30 transition">
+            <h4 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+              <span>⚡ REST API & FastAPI</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">rest-framework</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Expose secure JSON REST endpoints with Pydantic schemas, Swagger/OpenAPI interactive documentation, and API key authentication.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 3: Administration, Backups & Maintenance FAQ -->
+  <section id="troubleshooting" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 text-center sm:text-left">
+      <div class="inline-flex items-center space-x-2 text-xs font-bold text-accent-teal uppercase tracking-widest mb-2">
+        <span>Part 3</span>
+        <span>•</span>
+        <span>Administration & FAQ</span>
+      </div>
+      <h2 class="text-3xl font-bold text-white">System Administration & Troubleshooting</h2>
+      <p class="text-slate-400 text-sm mt-2">Essential management tasks, automated backups, and answers to common operational questions.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <!-- FAQ 1: Automated Backups -->
+      <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <h3 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+          <span>💾 How do I perform an automated database backup?</span>
+        </h3>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          You can dump the complete PostgreSQL database without downtime using the containerized client:
+        </p>
+        <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800">docker exec -t odoo_db pg_dump -U odoo -F c -b -v -f /var/lib/postgresql/data/backup_$(date +%Y%m%d).dump odoo</pre>
+      </div>
+
+      <!-- FAQ 2: Installing New Custom Modules -->
+      <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <h3 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+          <span>🧩 How do I add my own custom or third-party module?</span>
+        </h3>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Simply place your module folder inside <code class="text-accent-teal font-mono">custom/</code> or <code class="text-accent-teal font-mono">thirdparty/</code> on your host. Then update the module list in Odoo:
+        </p>
+        <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800"># 1. In Odoo Web: Enable Developer Mode (Settings -> Activate Developer Mode)
+# 2. Go to Apps -> Update Apps List -> Search & Install your module</pre>
+      </div>
+
+      <!-- FAQ 3: Port 8069 in use -->
+      <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <h3 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+          <span>🔌 What if Port 8069 is already bound by another app?</span>
+        </h3>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Change the host port mapping in <code class="text-slate-200 font-mono">docker-compose.yml</code> without modifying the container port:
+        </p>
+        <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800">ports:
+  - "8080:8069"  # Maps host port 8080 to container 8069</pre>
+      </div>
+
+      <!-- FAQ 4: Audit & Compliance Tracking -->
+      <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
+        <h3 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
+          <span>🔍 How do I enable Audit Logging for sensitive tables?</span>
+        </h3>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          With OCA <code class="text-accent-teal font-mono">auditlog</code> installed, navigate to <strong>Settings &rarr; Technical &rarr; Audit &rarr; Rules</strong>. Add any model (e.g., <code class="text-slate-300 font-mono">res.partner</code>, <code class="text-slate-300 font-mono">account.move</code>) and select Create/Write/Delete tracking.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source Sponsorship & Buy Me A Coffee Banner -->
+  <section class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="p-8 sm:p-12 rounded-3xl glassmorphism border border-amber-500/30 relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -z-10"></div>
+      <div class="text-4xl mb-4">☕</div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Support Open Source Software</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base mb-8">
+        This open-source architecture saves small businesses and developers thousands of dollars each year. 
+        If you find this stack or documentation helpful, please support continued maintenance and updates!
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="https://buymeacoffee.com/narayanansw" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center space-x-3 bg-[#FFDD00] hover:bg-[#ffe338] text-slate-900 font-extrabold px-6 py-3.5 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 text-base">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.216 6.415l-.132-.666c-.119-.597-.386-1.161-.8-1.635-.414-.473-.95-.826-1.554-1.023-.604-.198-1.25-.246-1.874-.14-.624.106-1.205.372-1.688.771l-.168.14V3.5c0-.928-.369-1.818-1.025-2.475C12.318.369 11.428 0 10.5 0h-7C2.572 0 1.682.369 1.025 1.025.369 1.682 0 2.572 0 3.5v9c0 2.914 1.157 5.709 3.218 7.769C5.279 22.33 8.074 23.487 10.988 23.487c2.31 0 4.549-.73 6.414-2.091 1.865-1.36 3.197-3.32 3.818-5.619l1.092-4.043c.277-1.023.27-2.103-.021-3.123-.29-1.02-.888-1.922-1.722-2.585l-.353-.28v-.331zm-2.04 4.544l-.865 3.203c-.45 1.666-1.417 3.088-2.77 4.076-1.353.987-2.977 1.517-4.653 1.517-2.122 0-4.157-.843-5.657-2.343C2.73 15.912 1.887 13.877 1.887 11.755V3.5c0-.43.171-.843.475-1.147C2.666 2.049 3.079 1.878 3.5 1.878h7c.421 0 .834.171 1.138.475.304.304.475.717.475 1.147v4.613l-1.385-1.154c-.725-.6-1.597-.999-2.53-1.158-.933-.16-1.902-.088-2.808.209-.906.297-1.71.827-2.331 1.536-.621.71-1.022 1.556-1.163 2.452l-.198 1.258c-.066.421.056.848.337 1.173.282.325.688.513 1.116.517h8.216l.244 1.22c.079.398.257.774.52 1.09.263.316.604.551.99.683.387.132.802.164 1.205.093.403-.07.781-.248 1.099-.516l.462-.39z"/>
+          </svg>
+          <span>Buy Me A Coffee</span>
+        </a>
+
+        <a href="https://github.com/sponsors/rsnarsna" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-pink-400 font-bold px-6 py-3.5 rounded-xl border border-pink-500/30 transition transform hover:-translate-y-0.5 text-base">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <span>Sponsor on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pagination / Previous Page Footer -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div class="flex items-center justify-between p-6 rounded-2xl glassmorphism border border-slate-800">
+      <a href="index.html" class="inline-flex items-center space-x-3 text-slate-300 hover:text-white transition">
+        <div class="h-10 w-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </div>
+        <div class="text-left">
+          <div class="text-[11px] text-slate-500 uppercase font-semibold">Previous Page</div>
+          <div class="text-sm font-bold text-white">Stack Overview & Analytics</div>
+        </div>
+      </a>
+
+      <a href="https://github.com/rsnarsna/odoo" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 text-xs font-semibold text-accent-teal hover:underline">
+        <span>View Code on GitHub</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-slate-800 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        Released under the <strong>LGPL-3.0 & AGPL-3.0</strong> Licenses. Built with Odoo Community & OCA.
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="https://github.com/rsnarsna/odoo" class="hover:text-slate-300">GitHub Repository</a>
+        <a href="https://github.com/rsnarsna/odoo/issues" class="hover:text-slate-300">Report Issue</a>
+        <a href="https://buymeacoffee.com/narayanansw" class="hover:text-amber-400">Buy Me a Coffee</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
