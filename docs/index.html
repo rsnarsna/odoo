@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -183,41 +184,71 @@
       </p>
     </div>
 
+    <!-- Official Live GitHub Buttons & Real-Time Sync Bar -->
+    <div class="p-5 rounded-2xl glassmorphism border border-slate-800 mb-8 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Live GitHub Buttons:</span>
+        </span>
+        <!-- Official GitHub Buttons from GitHub CDN -->
+        <span class="inline-flex items-center space-x-2 pt-1">
+          <a class="github-button" href="https://github.com/rsnarsna/odoo" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star rsnarsna/odoo on GitHub">Star</a>
+          <a class="github-button" href="https://github.com/rsnarsna/odoo/fork" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork rsnarsna/odoo on GitHub">Fork</a>
+          <a class="github-button" href="https://github.com/rsnarsna/odoo/subscription" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch rsnarsna/odoo on GitHub">Watch</a>
+        </span>
+      </div>
+
+      <div class="flex items-center space-x-3 text-xs">
+        <div class="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-slate-950/80 border border-slate-800 text-slate-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span id="telemetry-status" class="font-medium text-slate-300">Connected to GitHub API</span>
+          <span class="text-slate-600">|</span>
+          <span id="telemetry-time" class="text-slate-400 font-mono text-[11px]">Synced just now</span>
+        </div>
+
+        <button onclick="refreshLiveTelemetry()" id="btn-refresh" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-brand-500/20 hover:bg-brand-500/30 text-brand-100 border border-brand-500/40 font-semibold transition active:scale-95">
+          <svg id="refresh-icon" class="w-3.5 h-3.5 text-accent-teal transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span>Refresh Now</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Live Telemetry KPI Cards -->
     <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8 text-center">
-      <div class="p-4 rounded-xl glassmorphism border border-slate-800">
+      <div class="p-4 rounded-xl glassmorphism border border-slate-800 relative group">
         <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">GitHub Stars</div>
-        <div id="gh-stars" class="text-2xl sm:text-3xl font-extrabold text-amber-400 mt-1">0</div>
-        <a href="https://github.com/rsnarsna/odoo" target="_blank" rel="noopener noreferrer" class="text-[10px] text-accent-teal hover:underline mt-1 inline-block">★ Star on GitHub</a>
+        <div id="gh-stars" class="text-2xl sm:text-3xl font-extrabold text-amber-400 mt-1 transition">0</div>
+        <a href="https://github.com/rsnarsna/odoo" target="_blank" rel="noopener noreferrer" class="text-[10px] text-accent-teal hover:underline mt-1 inline-block">★ Click to Star</a>
       </div>
 
       <div class="p-4 rounded-xl glassmorphism border border-slate-800">
         <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Watchers</div>
-        <div id="gh-watchers" class="text-2xl sm:text-3xl font-extrabold text-blue-400 mt-1">0</div>
-        <span class="text-[10px] text-slate-500 mt-1 block">Subscribers</span>
+        <div id="gh-watchers" class="text-2xl sm:text-3xl font-extrabold text-blue-400 mt-1 transition">0</div>
+        <span class="text-[10px] text-slate-500 mt-1 block">Live Subscribers</span>
       </div>
 
       <div class="p-4 rounded-xl glassmorphism border border-slate-800">
         <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Total Commits</div>
-        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">13</div>
-        <span class="text-[10px] text-emerald-400/80 mt-1 block">5 Stages Verified</span>
+        <div id="gh-commits-count" class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">13</div>
+        <a href="https://github.com/rsnarsna/odoo/commits/main" target="_blank" rel="noopener noreferrer" class="text-[10px] text-emerald-400 hover:underline mt-1 inline-block">5 Stages Verified &rarr;</a>
       </div>
 
       <div class="p-4 rounded-xl glassmorphism border border-slate-800">
         <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Active Modules</div>
         <div class="text-2xl sm:text-3xl font-extrabold text-brand-500 mt-1">278+</div>
-        <span class="text-[10px] text-brand-100/80 mt-1 block">Live in Postgres</span>
+        <a href="guide.html" class="text-[10px] text-brand-100 hover:underline mt-1 inline-block">Verified in DB &rarr;</a>
       </div>
 
       <div class="p-4 rounded-xl glassmorphism border border-slate-800">
         <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Forks & Clones</div>
-        <div id="gh-forks" class="text-2xl sm:text-3xl font-extrabold text-pink-400 mt-1">0</div>
-        <span class="text-[10px] text-slate-500 mt-1 block">Open Source Clones</span>
+        <div id="gh-forks" class="text-2xl sm:text-3xl font-extrabold text-pink-400 mt-1 transition">0</div>
+        <a href="https://github.com/rsnarsna/odoo/fork" target="_blank" rel="noopener noreferrer" class="text-[10px] text-pink-400 hover:underline mt-1 inline-block">Fork Repo</a>
       </div>
 
       <div class="p-4 rounded-xl glassmorphism border border-slate-800">
         <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Repo Storage</div>
-        <div id="gh-size" class="text-2xl sm:text-3xl font-extrabold text-purple-400 mt-1">47.8 MB</div>
+        <div id="gh-size" class="text-2xl sm:text-3xl font-extrabold text-purple-400 mt-1 transition">47.8 MB</div>
         <span class="text-[10px] text-slate-500 mt-1 block">Engine & Addons</span>
       </div>
     </div>
@@ -294,6 +325,52 @@
         </p>
         <div class="relative h-72 sm:h-96 w-full">
           <canvas id="chartTraffic"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-time GitHub Activity & Recent Commits Stream -->
+    <div class="mt-8 p-6 rounded-2xl glassmorphism border border-slate-800">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
+        <div class="flex items-center space-x-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <h3 class="text-sm font-bold text-white uppercase tracking-wider">Live GitHub Activity Stream & Recent Commits</h3>
+        </div>
+        <a href="https://github.com/rsnarsna/odoo/commits/main" target="_blank" rel="noopener noreferrer" class="text-xs text-accent-teal hover:underline flex items-center space-x-1">
+          <span>View All Commits on GitHub &rarr;</span>
+        </a>
+      </div>
+
+      <div id="live-commit-feed" class="space-y-3">
+        <!-- Dynamically updated via GitHub API -->
+        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+          <div class="flex items-center space-x-3">
+            <span class="px-2 py-0.5 rounded bg-brand-500/20 text-brand-100 font-mono text-[11px] border border-brand-500/30">5ad4c11</span>
+            <span class="text-slate-200 font-medium">feat(analytics): add GitHub repo tracking, Star History graphs, and real-time trends dashboard</span>
+          </div>
+          <div class="text-slate-400 text-[11px] whitespace-nowrap sm:text-right">
+            <span>By rsnarsna &bull; </span><span class="text-emerald-400">Verified</span>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+          <div class="flex items-center space-x-3">
+            <span class="px-2 py-0.5 rounded bg-brand-500/20 text-brand-100 font-mono text-[11px] border border-brand-500/30">1acd9a9</span>
+            <span class="text-slate-200 font-medium">docs: add comprehensive open source apps user guide and setup manual page</span>
+          </div>
+          <div class="text-slate-400 text-[11px] whitespace-nowrap sm:text-right">
+            <span>By rsnarsna &bull; </span><span class="text-emerald-400">Verified</span>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+          <div class="flex items-center space-x-3">
+            <span class="px-2 py-0.5 rounded bg-brand-500/20 text-brand-100 font-mono text-[11px] border border-brand-500/30">5e9c52b</span>
+            <span class="text-slate-200 font-medium">docs: update active modules to 278+ installed apps in documentation and analytics</span>
+          </div>
+          <div class="text-slate-400 text-[11px] whitespace-nowrap sm:text-right">
+            <span>By rsnarsna &bull; </span><span class="text-emerald-400">Verified</span>
+          </div>
         </div>
       </div>
     </div>
@@ -725,9 +802,19 @@ cp .env.example .env</pre>
       });
     }
 
-    async function loadGitHubTelemetry() {
+    async function refreshLiveTelemetry() {
+      const btn = document.getElementById('btn-refresh');
+      const icon = document.getElementById('refresh-icon');
+      const status = document.getElementById('telemetry-status');
+      const time = document.getElementById('telemetry-time');
+
+      if (icon) icon.classList.add('animate-spin');
+      if (status) status.innerText = 'Syncing Live...';
+
       try {
-        const res = await fetch('https://api.github.com/repos/rsnarsna/odoo');
+        const cacheBust = Date.now();
+        // 1. Fetch Repository Stats
+        const res = await fetch(`https://api.github.com/repos/rsnarsna/odoo?t=${cacheBust}`);
         if (res.ok) {
           const data = await res.json();
           if (data.stargazers_count !== undefined) {
@@ -743,13 +830,48 @@ cp .env.example .env</pre>
             document.getElementById('gh-size').innerText = (data.size / 1024).toFixed(1) + ' MB';
           }
         }
+
+        // 2. Fetch Live Recent Commits
+        const commitsRes = await fetch(`https://api.github.com/repos/rsnarsna/odoo/commits?per_page=4&t=${cacheBust}`);
+        if (commitsRes.ok) {
+          const commits = await commitsRes.json();
+          const feed = document.getElementById('live-commit-feed');
+          if (feed && Array.isArray(commits) && commits.length > 0) {
+            feed.innerHTML = commits.map(c => {
+              const shaShort = c.sha.substring(0, 7);
+              const msg = c.commit.message.split('\n')[0];
+              const author = c.commit.author ? c.commit.author.name : 'rsnarsna';
+              const dateObj = new Date(c.commit.author ? c.commit.author.date : Date.now());
+              const dateStr = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+              return `
+                <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs hover:border-slate-700 transition">
+                  <div class="flex items-center space-x-3">
+                    <a href="https://github.com/rsnarsna/odoo/commit/${c.sha}" target="_blank" class="px-2 py-0.5 rounded bg-brand-500/20 text-brand-100 hover:bg-brand-500/30 font-mono text-[11px] border border-brand-500/30 transition">${shaShort}</a>
+                    <span class="text-slate-200 font-medium">${msg}</span>
+                  </div>
+                  <div class="text-slate-400 text-[11px] whitespace-nowrap sm:text-right">
+                    <span>${author} &bull; </span><span class="text-emerald-400 font-mono">${dateStr}</span>
+                  </div>
+                </div>
+              `;
+            }).join('');
+          }
+        }
+
+        const now = new Date();
+        if (time) time.innerText = 'Synced at ' + now.toLocaleTimeString();
+        if (status) status.innerText = 'Live GitHub v3 API: OK';
       } catch (err) {
-        console.debug('GitHub API rate limit or offline:', err);
+        if (status) status.innerText = 'Cached Telemetry';
+        if (time) time.innerText = 'Offline / Rate Limited';
+      } finally {
+        if (icon) setTimeout(() => icon.classList.remove('animate-spin'), 600);
       }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      loadGitHubTelemetry();
+      refreshLiveTelemetry();
+      setInterval(refreshLiveTelemetry, 30000);
 
       const chartDefaults = {
         color: '#94a3b8',
