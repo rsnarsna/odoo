@@ -56,7 +56,15 @@ Track repository stars, commit velocity across all 5 deployment stages, and comm
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=rsnarsna/odoo&type=Date)](https://star-history.com/#rsnarsna/odoo&Date)
+## Star History
+
+<a href="https://www.star-history.com/?repos=rsnarsna%2Fodoo&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=rsnarsna/odoo&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=rsnarsna/odoo&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=rsnarsna/odoo&type=date&legend=top-left" />
+ </picture>
+</a>
 
 | Metric | Live Telemetry Badge | Details |
 |---|:---:|---|
