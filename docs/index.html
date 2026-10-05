@@ -283,11 +283,14 @@
           <p class="text-xs text-slate-400 mb-4 text-center">
             Historical stargazers timeline tracking community interest over time via <strong>Star-History</strong> API.
           </p>
-          <div class="w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/70 p-2 sm:p-4">
-            <img src="https://api.star-history.com/svg?repos=rsnarsna/odoo&type=Date&theme=dark" 
-                 alt="Odoo 19 Star History Graph" 
-                 class="w-full max-h-[420px] object-contain rounded-xl"
-                 onerror="this.onerror=null; this.src='https://img.shields.io/github/stars/rsnarsna/odoo?style=for-the-badge&logo=github&label=Stars';" />
+          <div class="w-full overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/70 p-2 sm:p-4 flex items-center justify-center">
+            <a href="https://www.star-history.com/?repos=rsnarsna%2Fodoo&type=date&legend=top-left" target="_blank" rel="noopener noreferrer" class="block w-full">
+              <picture class="block w-full">
+                <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=rsnarsna/odoo&type=date&theme=dark&legend=top-left" />
+                <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=rsnarsna/odoo&type=date&legend=top-left" />
+                <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=rsnarsna/odoo&type=date&legend=top-left" class="w-full max-h-[420px] object-contain rounded-xl mx-auto" />
+              </picture>
+            </a>
           </div>
           <div class="mt-4 flex flex-wrap items-center justify-center gap-3">
             <a href="https://star-history.com/#rsnarsna/odoo&Date" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-accent-teal hover:underline flex items-center space-x-1">

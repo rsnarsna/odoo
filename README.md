@@ -57,7 +57,6 @@ Track repository stars, commit velocity across all 5 deployment stages, and comm
 <div align="center">
 
 ## Star History
-
 <a href="https://www.star-history.com/?repos=rsnarsna%2Fodoo&type=date&legend=top-left">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=rsnarsna/odoo&type=date&theme=dark&legend=top-left" />
