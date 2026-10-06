@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_signature_document_vault_form" model="ir.ui.view">
+        <field name="name">signature.document.vault.form</field>
+        <field name="model">signature.document.vault</field>
+        <field name="arch" type="xml">
+            <form string="Electronic Signatures Vault">
+                <header>
+
+                    <button name="action_send" string="Send for Signature" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_sign" string="Sign Now (Test)" type="object" class="oe_highlight" invisible="state != 'sent'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,signed"/>
+
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Mutual Non-Disclosure Agreement"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="signer_email"/>
+                        </group>
+                        <group>
+                            <field name="signed_date"/>
+                            <field name="audit_hash"/>
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_signature_document_vault_list" model="ir.ui.view">
+        <field name="name">signature.document.vault.list</field>
+        <field name="model">signature.document.vault</field>
+        <field name="arch" type="xml">
+            <list string="Electronic Signatures Vault">
+
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="signer_email"/>
+                <field name="signed_date"/>
+                <field name="state" widget="badge"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_signature_document_vault_search" model="ir.ui.view">
+        <field name="name">signature.document.vault.search</field>
+        <field name="model">signature.document.vault</field>
+        <field name="arch" type="xml">
+            <search string="Electronic Signatures Vault">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_signature_document_vault" model="ir.actions.act_window">
+        <field name="name">Electronic Signatures Vault</field>
+        <field name="res_model">signature.document.vault</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Electronic Signatures Vault entry!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top-level and Action Menu -->
+    <menuitem id="menu_signature_document_vault_root" 
+              name="Electronic Signatures Vault" 
+              sequence="50"/>
+
+    <menuitem id="menu_signature_document_vault_main" 
+              name="Electronic Signatures Vault" 
+              parent="menu_signature_document_vault_root" 
+              action="action_signature_document_vault" 
+              sequence="10"/>
+</odoo>

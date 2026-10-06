@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sample Store App Extension',
+    'name': 'Community Studio Low-Code Builder',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
-    'summary': 'Sample thirdparty app store add-on demonstrating runnable store packaging',
+    'category': 'Customization',
+    'summary': 'Low-code custom fields, model extensions, and form designer without coding',
     'description': """
-        Sample Store App Extension - Fully runnable open-source thirdparty app store package.
+        Community Studio Low-Code Builder - Fully runnable open-source thirdparty app store package.
         Replaces proprietary Enterprise features with community-maintained models and views.
     """,
     'author': 'Odoo Open Source Community',

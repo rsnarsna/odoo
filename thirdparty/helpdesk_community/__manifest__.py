@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sample Store App Extension',
+    'name': 'Community Support Ticket Desk',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
-    'summary': 'Sample thirdparty app store add-on demonstrating runnable store packaging',
+    'category': 'Services/Helpdesk',
+    'summary': 'Customer issue management, ticket priority dispatching, and resolution SLAs',
     'description': """
-        Sample Store App Extension - Fully runnable open-source thirdparty app store package.
+        Community Support Ticket Desk - Fully runnable open-source thirdparty app store package.
         Replaces proprietary Enterprise features with community-maintained models and views.
     """,
     'author': 'Odoo Open Source Community',

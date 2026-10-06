@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_barcode_scanner_session_form" model="ir.ui.view">
+        <field name="name">barcode.scanner.session.form</field>
+        <field name="model">barcode.scanner.session</field>
+        <field name="arch" type="xml">
+            <form string="Barcode Scanner Mobile Interface">
+                <header>
+
+                    <button name="action_start" string="Start Scanner" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_close" string="Close Session" type="object" invisible="state != 'active'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,done"/>
+
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="warehouse_id"/>
+                            <field name="operator_id"/>
+                        </group>
+                        <group>
+                            <field name="last_barcode"/>
+                            <field name="scan_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Scanner Logs" name="logs">
+                            <field name="notes" placeholder="Detailed scan logs and SKU lookups..."/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_barcode_scanner_session_list" model="ir.ui.view">
+        <field name="name">barcode.scanner.session.list</field>
+        <field name="model">barcode.scanner.session</field>
+        <field name="arch" type="xml">
+            <list string="Barcode Scanner Mobile Interface">
+
+                <field name="name"/>
+                <field name="operator_id"/>
+                <field name="last_barcode"/>
+                <field name="scan_count"/>
+                <field name="state" widget="badge"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_barcode_scanner_session_search" model="ir.ui.view">
+        <field name="name">barcode.scanner.session.search</field>
+        <field name="model">barcode.scanner.session</field>
+        <field name="arch" type="xml">
+            <search string="Barcode Scanner Mobile Interface">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_barcode_scanner_session" model="ir.actions.act_window">
+        <field name="name">Barcode Scanner Mobile Interface</field>
+        <field name="res_model">barcode.scanner.session</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Barcode Scanner Mobile Interface entry!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top-level and Action Menu -->
+    <menuitem id="menu_barcode_scanner_session_root" 
+              name="Barcode Scanner Mobile Interface" 
+              sequence="50"/>
+
+    <menuitem id="menu_barcode_scanner_session_main" 
+              name="Barcode Scanner Mobile Interface" 
+              parent="menu_barcode_scanner_session_root" 
+              action="action_barcode_scanner_session" 
+              sequence="10"/>
+</odoo>

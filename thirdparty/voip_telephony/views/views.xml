@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_voip_call_record_form" model="ir.ui.view">
+        <field name="name">voip.call.record.form</field>
+        <field name="model">voip.call.record</field>
+        <field name="arch" type="xml">
+            <form string="VoIP SIP Call Manager">
+                <header>
+
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Discovery Call with Client"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="phone_number"/>
+                        </group>
+                        <group>
+                            <field name="call_direction"/>
+                            <field name="call_duration_sec"/>
+                            <field name="call_status"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Call Notes" name="notes">
+                            <field name="call_notes" placeholder="Meeting recap notes..."/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_voip_call_record_list" model="ir.ui.view">
+        <field name="name">voip.call.record.list</field>
+        <field name="model">voip.call.record</field>
+        <field name="arch" type="xml">
+            <list string="VoIP SIP Call Manager">
+
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="phone_number"/>
+                <field name="call_direction"/>
+                <field name="call_duration_sec"/>
+                <field name="call_status" widget="badge"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_voip_call_record_search" model="ir.ui.view">
+        <field name="name">voip.call.record.search</field>
+        <field name="model">voip.call.record</field>
+        <field name="arch" type="xml">
+            <search string="VoIP SIP Call Manager">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_voip_call_record" model="ir.actions.act_window">
+        <field name="name">VoIP SIP Call Manager</field>
+        <field name="res_model">voip.call.record</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first VoIP SIP Call Manager entry!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top-level and Action Menu -->
+    <menuitem id="menu_voip_call_record_root" 
+              name="VoIP SIP Call Manager" 
+              sequence="50"/>
+
+    <menuitem id="menu_voip_call_record_main" 
+              name="VoIP SIP Call Manager" 
+              parent="menu_voip_call_record_root" 
+              action="action_voip_call_record" 
+              sequence="10"/>
+</odoo>

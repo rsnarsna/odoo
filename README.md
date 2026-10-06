@@ -3,7 +3,7 @@
 <div align="center">
 
 [![Odoo Version](https://img.shields.io/badge/Odoo-19.0%20Community-875A7B?style=for-the-badge&logo=odoo&logoColor=white)](https://www.odoo.com)
-[![Active Modules](https://img.shields.io/badge/Active%20Modules-278%2B%20Installed-emerald?style=for-the-badge&logo=checkmarx&logoColor=white)](#-repository-analytics--system-metrics)
+[![Active Modules](https://img.shields.io/badge/Active%20Modules-292%2B%20Installed-emerald?style=for-the-badge&logo=checkmarx&logoColor=white)](#-repository-analytics--system-metrics)
 [![Docker Compose](https://img.shields.io/badge/Docker-Compose%20v2-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org)
 [![GitHub Pages](https://img.shields.io/badge/Documentation-GitHub%20Pages-00A09D?style=for-the-badge&logo=githubpages&logoColor=white)](https://rsnarsna.github.io/odoo/)
@@ -43,7 +43,7 @@
 |---|:---:|---|
 | **Odoo Core Engine** | **19.0-20260305** | Official Docker upstream image |
 | **Database Engine** | **PostgreSQL 16** | Containerized with persistent storage & health check |
-| **Total Active Modules** | **278 Modules** | Verified active in PostgreSQL `ir_module_module` |
+| **Total Active Modules** | **292 Modules** | Verified active in PostgreSQL `ir_module_module` |
 | **Deployed Stages** | **4 of 5 (100% ERP)** | Core, Finance/HR, Marketing/Sign, Operations/VoIP |
 | **User License Cost** | **$0.00 / month** | Completely free and open-source licenses |
 | **Estimated Cost Savings** | **~$6,000 / year** | Based on a standard 25-user Enterprise deployment |
@@ -153,6 +153,26 @@ flowchart TD
 
 ---
 
+### 🚀 Enterprise Third-Party Suite (14 Apps - 100% Implemented & Runnable)
+* **Status:** `100% Deployed, Verified & Live in PostgreSQL` (Total: 292 Modules)
+* **All 14 Modules Implemented & Runnable in `thirdparty/`:**
+  1. **AI Assistant (`ai_assistant`):** OpenAI/Claude smart assistant with custom system prompts, context injection, and chat logs.
+  2. **Accounting Reporting (`accounting_reporting`):** Dynamic financial dashboard with automated KPI metrics, cash flow tracking, and balance reporting.
+  3. **Barcode Scanner (`barcode_scanner`):** Warehouse barcode scanning support with GS1/EAN standard compliance and handheld terminals.
+  4. **Document Management DMS (`documents_dms`):** File vault with folder directories, tagging, version history, and role-based access control.
+  5. **Field Service Management (`field_service_mgmt`):** On-site technician dispatching, GPS territory assignment, work orders, and digital customer signature sign-offs.
+  6. **Helpdesk Community (`helpdesk_community`):** Multi-channel customer support ticket board with SLA resolution deadlines and support teams.
+  7. **Marketing Automation (`marketing_automation`):** Multi-step lead nurturing campaigns with event triggers, drip sequences, and participant states.
+  8. **Payroll Community (`payroll_community`):** Employee salary structures, earnings, deductions, automated computation rules, and batch payslip generation.
+  9. **Sample Store App (`sample_store_app`):** E-commerce storefront model and catalog extension.
+  10. **Electronic e-Sign (`sign_electronic`):** Document e-signature requests with cryptographic audit logs and multi-signer workflows.
+  11. **Social Marketing (`social_marketing`):** Multi-account social media post scheduler with engagement analytics and post queueing.
+  12. **Studio Customizer (`studio_customizer`):** Low-code dynamic field and custom model creator with live UI view configurations.
+  13. **Subscription Contracts (`subscription_contracts`):** Recurring billing engine with auto-renewal invoice generation, MRR tracking, and contract periods.
+  14. **VoIP Telephony (`voip_telephony`):** WebRTC in-browser softphone, SIP server profiles, call queues, and dial log tracking.
+
+---
+
 ## 💰 Feature & Cost Comparison vs. Odoo Enterprise
 
 | Capability | Odoo Enterprise (Paid) | This Open-Source Stack | Open-Source Module Used |
@@ -205,7 +225,7 @@ odoo/
 │   ├── social/                   # mute_notification_user_autosubscribe
 │   ├── stock-logistics-barcode/  # stock_barcodes
 │   └── survey/                   # partner_survey
-├── thirdparty/                   # Mount point for App Store add-ons
+├── thirdparty/                   # 14 Enterprise add-ons (AI Assistant, Studio, Accounting, Sign, DMS, etc.)
 ├── custom/                       # Mount point for in-house custom modules
 ├── scripts/                      # Deployment and maintenance scripts
 ├── .env.example                  # Template environment variables (safe for public git)
@@ -261,6 +281,65 @@ http://localhost:8069
 ```
 * **Default Login:** `admin`
 * **Default Password:** `admin`
+
+---
+
+## 📦 How to Add & Run Third-Party Apps in Docker (Step-by-Step Procedure)
+
+To add new custom or third-party apps (from the Odoo App Store, GitHub, or custom-built) into this Dockerized setup, follow this verified procedure:
+
+### 1. Place the App in the `thirdparty/` Directory
+Extract or clone the app folder directly under `thirdparty/<your_module_name>`:
+```text
+odoo/
+├── thirdparty/
+│   └── your_module_name/
+│       ├── __init__.py
+│       ├── __manifest__.py
+│       ├── models/
+│       ├── views/
+│       └── security/
+│           └── ir.model.access.csv
+```
+> [!IMPORTANT]
+> **Odoo 19 Module Requirements:**
+> 1. `__manifest__.py` must declare `'installable': True` and define `'version': '19.0.1.0.0'`.
+> 2. `security/ir.model.access.csv` must define access rights for every custom model (e.g. read/write for `base.group_user`).
+> 3. Any Many2one field linked to `ir.model` must explicitly declare `ondelete='cascade'` (Odoo 19 restricts default behavior).
+
+### 2. Verify Addons Path Mapping
+In `config/odoo.conf`, verify that `/mnt/extra-addons/thirdparty` is included in `addons_path`:
+```ini
+addons_path = /mnt/extra-addons/oca,/mnt/extra-addons/thirdparty,/mnt/extra-addons/custom
+```
+*(This is already pre-configured by default in `docker-compose.yml` and `config/odoo.conf`)*.
+
+### 3. Install the App (Two Safe Methods)
+
+#### Option A: Zero-Lock CLI Installation (Recommended for CI/CD & Automation)
+To prevent PostgreSQL serialization lock conflicts, pause the web service, run the batch installer container, and restart:
+```bash
+# 1. Stop the web container temporarily
+docker compose stop web
+
+# 2. Run module initialization container
+docker run --rm --network odoo_network \
+  -v ${PWD}/config:/etc/odoo \
+  -v ${PWD}/oca:/mnt/extra-addons/oca \
+  -v ${PWD}/thirdparty:/mnt/extra-addons/thirdparty \
+  -v ${PWD}/custom:/mnt/extra-addons/custom \
+  --env-file .env \
+  odoo:latest odoo -i your_module_name -d odoo --stop-after-init --without-demo=all
+
+# 3. Resume web container
+docker compose start web
+```
+
+#### Option B: Live Web UI Installation (Developer Mode)
+1. Navigate to **`http://localhost:8069`** and log in as `admin`.
+2. Go to **Settings** &rarr; scroll to bottom &rarr; click **Activate the developer mode**.
+3. Go to the **Apps** menu &rarr; click **Update Apps List** in the top navigation bar.
+4. Remove the default **"Apps"** filter in the search box, search for your module name, and click **Activate / Install**.
 
 ---
 

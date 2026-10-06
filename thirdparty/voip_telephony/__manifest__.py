@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sample Store App Extension',
+    'name': 'VoIP SIP Call Manager',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
-    'summary': 'Sample thirdparty app store add-on demonstrating runnable store packaging',
+    'category': 'Productivity/VoIP',
+    'summary': 'In-browser WebRTC softphone dialer, Asterisk/FreePBX bridge, and call history logs',
     'description': """
-        Sample Store App Extension - Fully runnable open-source thirdparty app store package.
+        VoIP SIP Call Manager - Fully runnable open-source thirdparty app store package.
         Replaces proprietary Enterprise features with community-maintained models and views.
     """,
     'author': 'Odoo Open Source Community',

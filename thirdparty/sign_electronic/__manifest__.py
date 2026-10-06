@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sample Store App Extension',
+    'name': 'Electronic Signatures Vault',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
-    'summary': 'Sample thirdparty app store add-on demonstrating runnable store packaging',
+    'category': 'Productivity',
+    'summary': 'Digital PDF document sign-offs, signers workflow, and legal audit certificates',
     'description': """
-        Sample Store App Extension - Fully runnable open-source thirdparty app store package.
+        Electronic Signatures Vault - Fully runnable open-source thirdparty app store package.
         Replaces proprietary Enterprise features with community-maintained models and views.
     """,
     'author': 'Odoo Open Source Community',

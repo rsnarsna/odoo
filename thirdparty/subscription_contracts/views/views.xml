@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_subscription_recurring_plan_form" model="ir.ui.view">
+        <field name="name">subscription.recurring.plan.form</field>
+        <field name="model">subscription.recurring.plan</field>
+        <field name="arch" type="xml">
+            <form string="Recurring Subscriptions Engine">
+                <header>
+
+                    <button name="action_activate" string="Activate Subscription" type="object" class="oe_highlight" invisible="state == 'active'"/>
+                    <button name="action_terminate" string="Terminate Plan" type="object" invisible="state != 'active'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,paused,terminated"/>
+
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="SaaS Cloud Tier - 25 Users"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="billing_period"/>
+                        </group>
+                        <group>
+                            <field name="recurring_amount"/>
+                            <field name="next_billing_date"/>
+                        </group>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_subscription_recurring_plan_list" model="ir.ui.view">
+        <field name="name">subscription.recurring.plan.list</field>
+        <field name="model">subscription.recurring.plan</field>
+        <field name="arch" type="xml">
+            <list string="Recurring Subscriptions Engine">
+
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="billing_period"/>
+                <field name="recurring_amount"/>
+                <field name="next_billing_date"/>
+                <field name="state" widget="badge"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_subscription_recurring_plan_search" model="ir.ui.view">
+        <field name="name">subscription.recurring.plan.search</field>
+        <field name="model">subscription.recurring.plan</field>
+        <field name="arch" type="xml">
+            <search string="Recurring Subscriptions Engine">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_subscription_recurring_plan" model="ir.actions.act_window">
+        <field name="name">Recurring Subscriptions Engine</field>
+        <field name="res_model">subscription.recurring.plan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Recurring Subscriptions Engine entry!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top-level and Action Menu -->
+    <menuitem id="menu_subscription_recurring_plan_root" 
+              name="Recurring Subscriptions Engine" 
+              sequence="50"/>
+
+    <menuitem id="menu_subscription_recurring_plan_main" 
+              name="Recurring Subscriptions Engine" 
+              parent="menu_subscription_recurring_plan_root" 
+              action="action_subscription_recurring_plan" 
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fieldservice_custom_order,access_fieldservice_custom_order,model_fieldservice_custom_order,base.group_user,1,1,1,1

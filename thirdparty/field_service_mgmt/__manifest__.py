@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sample Store App Extension',
+    'name': 'Field Service Dispatch Hub',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
-    'summary': 'Sample thirdparty app store add-on demonstrating runnable store packaging',
+    'category': 'Services',
+    'summary': 'Technician job dispatch, customer site visits, GPS routing and work completion',
     'description': """
-        Sample Store App Extension - Fully runnable open-source thirdparty app store package.
+        Field Service Dispatch Hub - Fully runnable open-source thirdparty app store package.
         Replaces proprietary Enterprise features with community-maintained models and views.
     """,
     'author': 'Odoo Open Source Community',

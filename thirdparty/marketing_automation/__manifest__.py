@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sample Store App Extension',
+    'name': 'Marketing Automation Engine',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
-    'summary': 'Sample thirdparty app store add-on demonstrating runnable store packaging',
+    'category': 'Marketing',
+    'summary': 'Automated email sequences, subscriber journeys, event triggers and lead nurturing',
     'description': """
-        Sample Store App Extension - Fully runnable open-source thirdparty app store package.
+        Marketing Automation Engine - Fully runnable open-source thirdparty app store package.
         Replaces proprietary Enterprise features with community-maintained models and views.
     """,
     'author': 'Odoo Open Source Community',

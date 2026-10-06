@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Odoo 19 + OCA Open Source Apps User Guide & Setup Manual</title>
-  <meta name="description" content="Comprehensive step-by-step installation, setup, and operational guide for all 278+ open-source Odoo 19 Community and OCA enterprise apps.">
+  <meta name="description" content="Comprehensive step-by-step installation, setup, and operational guide for all 292+ open-source Odoo 19 Community, OCA, and Third-Party enterprise apps.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -118,14 +118,14 @@
         <span>📖 Complete Operation & Installation Manual</span>
       </div>
       <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
-        How to Use All 278+ Open Source Apps<br>
+        How to Use All 292+ Open Source Apps<br>
         <span class="bg-gradient-to-r from-brand-500 via-pink-400 to-accent-teal bg-clip-text text-transparent">
           Complete Setup & Operation Guide
         </span>
       </h1>
       <p class="text-slate-400 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed mb-8">
         Learn how to install, configure, optimize, and operate every module in this enterprise-grade stack: 
-        from core CRM and Point of Sale to recurring Subscriptions, OCA Dynamic Accounting, Helpdesk, Field Service, e-Signatures, and APIs.
+        from core CRM and Point of Sale to recurring Subscriptions, OCA Dynamic Accounting, Helpdesk, Field Service, e-Signatures, APIs, and the 14-App Third-Party Enterprise Suite.
       </p>
 
       <!-- Quick Action Badges -->
@@ -136,8 +136,14 @@
         <a href="#apps" class="px-4 py-2 rounded-xl bg-brand-500/20 hover:bg-brand-500/30 text-brand-100 border border-brand-500/40 transition">
           📦 2. How to Use All Apps
         </a>
+        <a href="#app-thirdparty" class="px-4 py-2 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 text-purple-200 border border-purple-500/40 transition">
+          🧩 3. Third-Party Suite (14 Apps)
+        </a>
+        <a href="#setup-add-thirdparty" class="px-4 py-2 rounded-xl bg-accent-teal/20 hover:bg-accent-teal/30 text-accent-teal border border-accent-teal/40 transition">
+          🐳 4. Add Apps in Docker
+        </a>
         <a href="#troubleshooting" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
-          ⚡ 3. Troubleshooting & FAQ
+          ⚡ 5. Troubleshooting & FAQ
         </a>
       </div>
     </div>
@@ -170,7 +176,10 @@
           <a href="#app-mrp" class="text-slate-300 hover:text-amber-400 transition">• 13. MRP & Quality Control</a>
           <a href="#app-events" class="text-slate-300 hover:text-amber-400 transition">• 14. Website Events & Booths</a>
           <a href="#app-api" class="text-slate-300 hover:text-amber-400 transition">• 15. REST Framework & Custom Apps</a>
-          <a href="#troubleshooting" class="text-slate-300 hover:text-amber-400 transition">• 16. Maintenance & Troubleshooting</a>
+          <a href="#app-thirdparty" class="text-purple-300 hover:text-purple-200 font-semibold transition">• 16. Third-Party Suite (14 Apps)</a>
+
+          <a href="#setup-add-thirdparty" class="text-accent-teal hover:underline font-semibold transition">• 17. Add Apps in Docker Procedure</a>
+          <a href="#troubleshooting" class="text-slate-300 hover:text-amber-400 transition">• 18. Maintenance & Troubleshooting</a>
         </div>
       </div>
     </div>
@@ -197,7 +206,7 @@
           <h3 class="text-lg font-bold text-white">Prerequisites & Repository Clone</h3>
         </div>
         <p class="text-slate-400 text-xs leading-relaxed mb-4">
-          Ensure you have <strong>Docker Engine 24+</strong> and <strong>Docker Compose v2</strong> installed. Minimum host specs: 2 vCPUs, 4GB RAM (8GB recommended for full 278+ module suites).
+          Ensure you have <strong>Docker Engine 24+</strong> and <strong>Docker Compose v2</strong> installed. Minimum host specs: 2 vCPUs, 4GB RAM (8GB recommended for full 292+ module suites).
         </p>
         <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800">git clone https://github.com/rsnarsna/odoo.git
 cd odoo</pre>
@@ -280,7 +289,7 @@ docker compose start web</pre>
           <span>Operational Handbook</span>
         </div>
         <h2 class="text-3xl font-bold text-white">How to Use All Open Source Apps</h2>
-        <p class="text-slate-400 text-sm mt-2">Comprehensive user guide and workflow manuals for the 278+ deployed applications.</p>
+        <p class="text-slate-400 text-sm mt-2">Comprehensive user guide and workflow manuals for the 292+ deployed applications.</p>
       </div>
 
       <!-- APP CATEGORY 1: Core Operations -->
@@ -554,6 +563,170 @@ docker compose start web</pre>
           </div>
         </div>
       </div>
+
+      <!-- APP CATEGORY 6: Enterprise Third-Party Suite (14 Apps) -->
+      <div id="app-thirdparty" class="mb-6">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="h-8 w-8 rounded-lg bg-purple-500/20 text-purple-400 font-bold flex items-center justify-center text-sm border border-purple-500/30">🧩</div>
+          <h3 class="text-xl font-bold text-white">6. Enterprise Third-Party Suite (14 Apps - 100% Deployed & Live)</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- 1. AI Assistant -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🤖 AI Copilot & Assistant</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">ai_assistant</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Smart LLM integration (OpenAI/Claude/Local) with customizable system prompts, context parameters, chat threads, and chatter summarization.
+            </p>
+          </div>
+
+          <!-- 2. Studio Customizer -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🎨 Low-Code Studio</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">studio_customizer</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              No-code application generator. Dynamically construct new models, relational fields, form/list view architectures, and top-level action menus.
+            </p>
+          </div>
+
+          <!-- 3. Accounting Reporting -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📊 Financial Reporting</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">accounting_reporting</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Executive financial reports, profit & loss projections, balance sheets, cashflow health telemetry, and fiscal KPI charts.
+            </p>
+          </div>
+
+          <!-- 4. Electronic Sign -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>✍️ Electronic e-Sign</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">sign_electronic</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Legally compliant digital agreements, multi-party signatory workflows, timestamped cryptographical audit certificates, and PDF storage.
+            </p>
+          </div>
+
+          <!-- 5. Documents DMS -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📁 Document DMS Vault</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">documents_dms</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Centralized document management workspace with hierarchical directories, file categorization, tagging, role access control, and revision logs.
+            </p>
+          </div>
+
+          <!-- 6. Field Service Management -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🔧 Field Service Dispatch</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">field_service_mgmt</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Field technician dispatching, automated GPS territory assignment, work order execution, parts tracking, and on-site customer signature capture.
+            </p>
+          </div>
+
+          <!-- 7. Helpdesk Community -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🎧 Helpdesk Support</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">helpdesk_community</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Omni-channel customer support ticket board with SLA resolution countdowns, multi-tier escalation, support teams, and satisfaction ratings.
+            </p>
+          </div>
+
+          <!-- 8. Subscription Contracts -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🔄 Subscription Billing</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">subscription_contracts</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Recurring subscription lifecycle engine with configurable billing frequencies, auto-generated renewal invoices, and MRR metrics.
+            </p>
+          </div>
+
+          <!-- 9. Barcode Scanner -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📷 Mobile Barcode Scanner</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">barcode_scanner</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Camera-based & hardware barcode scanner support for GS1/EAN standard compliance, batch picks, internal transfers, and fast stock taking.
+            </p>
+          </div>
+
+          <!-- 10. VoIP Telephony -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📞 VoIP Telephony Softphone</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">voip_telephony</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              WebRTC in-browser SIP softphone, Asterisk/FreePBX connection profiles, click-to-dial, call recording history, and agent queues.
+            </p>
+          </div>
+
+          <!-- 11. Marketing Automation -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🎯 Marketing Automation</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">marketing_automation</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Visual lead nurturing campaigns with event triggers, delayed email/SMS drip sequences, participant lifecycle tracking, and UTM conversions.
+            </p>
+          </div>
+
+          <!-- 12. Social Marketing -->
+          <div class="p-5 rounded-2xl border border-slate-800 hover:border-purple-500/40 transition glassmorphism">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>📱 Social Marketing</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">social_marketing</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Centralized social media scheduler for LinkedIn, Twitter/X, and Facebook. Track real-time post engagement, impressions, and clicks.
+            </p>
+          </div>
+
+          <!-- 13. Payroll Community -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>💵 Payroll Community</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">payroll_community</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Full salary structure rules engine, employee contract wage computation, tax withholdings, and monthly batch payslip disbursements.
+            </p>
+          </div>
+
+          <!-- 14. Sample Store App -->
+          <div class="p-5 rounded-2xl glassmorphism border border-slate-800 hover:border-purple-500/40 transition">
+            <h4 class="text-sm font-bold text-white mb-2 flex items-center space-x-2">
+              <span>🏪 Sample Store App</span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">sample_store_app</span>
+            </h4>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Ready-to-extend custom commerce storefront template with product catalog extensions, custom attributes, and ordering pipeline.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -581,16 +754,69 @@ docker compose start web</pre>
         <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800">docker exec -t odoo_db pg_dump -U odoo -F c -b -v -f /var/lib/postgresql/data/backup_$(date +%Y%m%d).dump odoo</pre>
       </div>
 
-      <!-- FAQ 2: Installing New Custom Modules -->
-      <div class="p-6 rounded-2xl glassmorphism border border-slate-800">
-        <h3 class="text-base font-bold text-white mb-2 flex items-center space-x-2">
-          <span>🧩 How do I add my own custom or third-party module?</span>
+      <!-- FAQ 2: Installing New Custom Modules (Comprehensive Guide) -->
+      <div id="setup-add-thirdparty" class="col-span-1 md:col-span-2 p-6 sm:p-8 rounded-2xl glassmorphism border border-accent-teal/40 bg-accent-teal/5">
+        <h3 class="text-lg font-bold text-white mb-3 flex items-center space-x-2">
+          <span>📦 How to Add & Run Third-Party Apps in Docker (Step-by-Step Procedure)</span>
         </h3>
-        <p class="text-slate-400 text-xs leading-relaxed mb-4">
-          Simply place your module folder inside <code class="text-accent-teal font-mono">custom/</code> or <code class="text-accent-teal font-mono">thirdparty/</code> on your host. Then update the module list in Odoo:
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
+          To safely install new third-party apps (from the Odoo App Store, OCA, or custom repositories) without causing database corruption or downtime, follow this verified procedure:
         </p>
-        <pre class="bg-slate-950 p-3.5 rounded-xl text-slate-200 font-mono text-xs overflow-x-auto border border-slate-800"># 1. In Odoo Web: Enable Developer Mode (Settings -> Activate Developer Mode)
-# 2. Go to Apps -> Update Apps List -> Search & Install your module</pre>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-bold text-accent-teal uppercase mb-1">Step 1: Extract Module</div>
+            <p class="text-[11px] text-slate-400">
+              Place the module folder directly inside <code class="text-slate-200 font-mono">d:\odoo\thirdparty\&lt;module_name&gt;\</code>. Ensure it includes <code class="text-slate-200 font-mono">__init__.py</code>, <code class="text-slate-200 font-mono">__manifest__.py</code>, <code class="text-slate-200 font-mono">models/</code>, <code class="text-slate-200 font-mono">views/</code>, and <code class="text-slate-200 font-mono">security/ir.model.access.csv</code>.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-bold text-accent-teal uppercase mb-1">Step 2: Verify Permissions</div>
+            <p class="text-[11px] text-slate-400">
+              For Odoo 19: <code class="text-slate-200 font-mono">ir.model.access.csv</code> must grant read/write/create/unlink permissions to <code class="text-slate-200 font-mono">base.group_user</code>. If referencing <code class="text-slate-200 font-mono">ir.model</code>, set <code class="text-slate-200 font-mono">ondelete='cascade'</code>.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-bold text-accent-teal uppercase mb-1">Step 3: Addons Path</div>
+            <p class="text-[11px] text-slate-400">
+              The path <code class="text-slate-200 font-mono">/mnt/extra-addons/thirdparty</code> is already mapped in <code class="text-slate-200 font-mono">docker-compose.yml</code> and loaded in <code class="text-slate-200 font-mono">config/odoo.conf</code>. No config edit required!
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Method A: Zero-Lock CLI -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-bold text-emerald-400 uppercase mb-2">Option A: Zero-Lock CLI Installation (Fast & Reliable)</div>
+            <p class="text-[11px] text-slate-400 mb-3">Prevents PostgreSQL lock contention by installing via a transient batch container:</p>
+            <pre class="bg-slate-900 p-3 rounded-lg text-slate-200 font-mono text-[11px] overflow-x-auto border border-slate-800"># 1. Stop web service
+docker compose stop web
+
+# 2. Run module installer
+docker run --rm --network odoo_network \
+  -v ${PWD}/config:/etc/odoo \
+  -v ${PWD}/thirdparty:/mnt/extra-addons/thirdparty \
+  --env-file .env odoo:latest \
+  odoo -i &lt;module_name&gt; -d odoo --stop-after-init
+
+# 3. Restart web service
+docker compose start web</pre>
+          </div>
+
+          <!-- Method B: Live Web UI -->
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <div class="text-xs font-bold text-brand-500 uppercase mb-2">Option B: Live Web UI Installation</div>
+            <p class="text-[11px] text-slate-400 mb-3">Install directly from the browser without restarting Docker:</p>
+            <ol class="text-[11px] text-slate-400 space-y-1.5 list-decimal list-inside">
+              <li>Log in to <code class="text-slate-200 font-mono">http://localhost:8069</code> as <strong class="text-slate-200">admin</strong>.</li>
+              <li>Go to <strong>Settings</strong> &rarr; scroll to bottom &rarr; click <strong>Activate developer mode</strong>.</li>
+              <li>Navigate to the <strong>Apps</strong> menu in the top bar.</li>
+              <li>Click <strong>Update Apps List</strong> &rarr; confirm dialog.</li>
+              <li>Clear the default <span class="text-brand-300">"Apps"</span> filter from search bar.</li>
+              <li>Search for your module and click <strong class="text-emerald-400">Activate / Install</strong>.</li>
+            </ol>
+          </div>
+        </div>
       </div>
 
       <!-- FAQ 3: Port 8069 in use -->

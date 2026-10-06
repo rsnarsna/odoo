@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_social_broadcast_post_form" model="ir.ui.view">
+        <field name="name">social.broadcast.post.form</field>
+        <field name="model">social.broadcast.post</field>
+        <field name="arch" type="xml">
+            <form string="Social Media Broadcast Hub">
+                <header>
+
+                    <button name="action_schedule" string="Schedule Post" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_publish_now" string="Publish Immediately" type="object" invisible="state == 'published'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,scheduled,published"/>
+
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Announcing Odoo 19 Stack Release"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="channel"/>
+                            <field name="scheduled_datetime"/>
+                        </group>
+                        <group>
+                            <field name="likes_count"/>
+                            <field name="comments_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Post Content" name="content">
+                            <field name="message_content" placeholder="Write social update..."/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_social_broadcast_post_list" model="ir.ui.view">
+        <field name="name">social.broadcast.post.list</field>
+        <field name="model">social.broadcast.post</field>
+        <field name="arch" type="xml">
+            <list string="Social Media Broadcast Hub">
+
+                <field name="name"/>
+                <field name="channel"/>
+                <field name="scheduled_datetime"/>
+                <field name="likes_count"/>
+                <field name="comments_count"/>
+                <field name="state" widget="badge"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_social_broadcast_post_search" model="ir.ui.view">
+        <field name="name">social.broadcast.post.search</field>
+        <field name="model">social.broadcast.post</field>
+        <field name="arch" type="xml">
+            <search string="Social Media Broadcast Hub">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_social_broadcast_post" model="ir.actions.act_window">
+        <field name="name">Social Media Broadcast Hub</field>
+        <field name="res_model">social.broadcast.post</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Social Media Broadcast Hub entry!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top-level and Action Menu -->
+    <menuitem id="menu_social_broadcast_post_root" 
+              name="Social Media Broadcast Hub" 
+              sequence="50"/>
+
+    <menuitem id="menu_social_broadcast_post_main" 
+              name="Social Media Broadcast Hub" 
+              parent="menu_social_broadcast_post_root" 
+              action="action_social_broadcast_post" 
+              sequence="10"/>
+</odoo>

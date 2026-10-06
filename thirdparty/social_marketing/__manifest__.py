@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sample Store App Extension',
+    'name': 'Social Media Broadcast Hub',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
-    'summary': 'Sample thirdparty app store add-on demonstrating runnable store packaging',
+    'category': 'Social',
+    'summary': 'Multi-channel social post scheduler, analytics stream, and audience engagement',
     'description': """
-        Sample Store App Extension - Fully runnable open-source thirdparty app store package.
+        Social Media Broadcast Hub - Fully runnable open-source thirdparty app store package.
         Replaces proprietary Enterprise features with community-maintained models and views.
     """,
     'author': 'Odoo Open Source Community',

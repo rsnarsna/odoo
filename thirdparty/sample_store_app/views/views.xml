@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_sample_store_item_form" model="ir.ui.view">
+        <field name="name">sample.store.item.form</field>
+        <field name="model">sample.store.item</field>
+        <field name="arch" type="xml">
+            <form string="Sample Store App Extension">
+                <header>
+
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Sample Store Extension Item"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="desc">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_sample_store_item_list" model="ir.ui.view">
+        <field name="name">sample.store.item.list</field>
+        <field name="model">sample.store.item</field>
+        <field name="arch" type="xml">
+            <list string="Sample Store App Extension">
+
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_sample_store_item_search" model="ir.ui.view">
+        <field name="name">sample.store.item.search</field>
+        <field name="model">sample.store.item</field>
+        <field name="arch" type="xml">
+            <search string="Sample Store App Extension">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_sample_store_item" model="ir.actions.act_window">
+        <field name="name">Sample Store App Extension</field>
+        <field name="res_model">sample.store.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Sample Store App Extension entry!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top-level and Action Menu -->
+    <menuitem id="menu_sample_store_item_root" 
+              name="Sample Store App Extension" 
+              sequence="50"/>
+
+    <menuitem id="menu_sample_store_item_main" 
+              name="Sample Store App Extension" 
+              parent="menu_sample_store_item_root" 
+              action="action_sample_store_item" 
+              sequence="10"/>
+</odoo>

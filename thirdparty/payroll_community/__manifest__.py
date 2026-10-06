@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Sample Store App Extension',
+    'name': 'Community Payroll & Wage Desk',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
-    'summary': 'Sample thirdparty app store add-on demonstrating runnable store packaging',
+    'category': 'Human Resources',
+    'summary': 'Employee wage structures, overtime rules, allowances, deductions, and payslip runs',
     'description': """
-        Sample Store App Extension - Fully runnable open-source thirdparty app store package.
+        Community Payroll & Wage Desk - Fully runnable open-source thirdparty app store package.
         Replaces proprietary Enterprise features with community-maintained models and views.
     """,
     'author': 'Odoo Open Source Community',
     'license': 'LGPL-3',
-    'depends': ['base'],
+    'depends': ['base', 'hr'],
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',

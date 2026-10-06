@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_documents_custom_workspace_form" model="ir.ui.view">
+        <field name="name">documents.custom.workspace.form</field>
+        <field name="model">documents.custom.workspace</field>
+        <field name="arch" type="xml">
+            <form string="Community Documents Workspace">
+                <header>
+
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="E.g. Legal Contracts 2026"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="access_level"/>
+                        </group>
+                        <group>
+                            <field name="owner_id"/>
+                            <field name="document_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Overview" name="overview">
+                            <field name="description" placeholder="Folder purpose and access rules..."/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_documents_custom_workspace_list" model="ir.ui.view">
+        <field name="name">documents.custom.workspace.list</field>
+        <field name="model">documents.custom.workspace</field>
+        <field name="arch" type="xml">
+            <list string="Community Documents Workspace">
+
+                <field name="name"/>
+                <field name="code"/>
+                <field name="access_level"/>
+                <field name="owner_id"/>
+                <field name="document_count"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_documents_custom_workspace_search" model="ir.ui.view">
+        <field name="name">documents.custom.workspace.search</field>
+        <field name="model">documents.custom.workspace</field>
+        <field name="arch" type="xml">
+            <search string="Community Documents Workspace">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_documents_custom_workspace" model="ir.actions.act_window">
+        <field name="name">Community Documents Workspace</field>
+        <field name="res_model">documents.custom.workspace</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Community Documents Workspace entry!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top-level and Action Menu -->
+    <menuitem id="menu_documents_custom_workspace_root" 
+              name="Community Documents Workspace" 
+              sequence="50"/>
+
+    <menuitem id="menu_documents_custom_workspace_main" 
+              name="Community Documents Workspace" 
+              parent="menu_documents_custom_workspace_root" 
+              action="action_documents_custom_workspace" 
+              sequence="10"/>
+</odoo>

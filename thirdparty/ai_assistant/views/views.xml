@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_ai_assistant_prompt_form" model="ir.ui.view">
+        <field name="name">ai.assistant.prompt.form</field>
+        <field name="model">ai.assistant.prompt</field>
+        <field name="arch" type="xml">
+            <form string="AI Smart Assistant">
+                <header>
+
+                    <button name="action_generate" string="Generate AI Output" type="object" class="oe_highlight" invisible="state == 'completed'"/>
+                    <button name="action_reset" string="Reset to Draft" type="object" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,completed"/>
+
+                </header>
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="E.g. Customer Renewal Email Draft"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="prompt_type"/>
+                            <field name="model_name"/>
+                        </group>
+                        <group>
+                            <field name="temperature"/>
+                            <field name="user_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Prompt Input" name="input">
+                            <field name="input_prompt" placeholder="Type prompt instructions here..."/>
+                        </page>
+                        <page string="AI Response" name="response">
+                            <field name="ai_response" placeholder="Response appears here after generation..."/>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_ai_assistant_prompt_list" model="ir.ui.view">
+        <field name="name">ai.assistant.prompt.list</field>
+        <field name="model">ai.assistant.prompt</field>
+        <field name="arch" type="xml">
+            <list string="AI Smart Assistant">
+
+                <field name="name"/>
+                <field name="prompt_type"/>
+                <field name="model_name"/>
+                <field name="user_id"/>
+                <field name="state" widget="badge"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_ai_assistant_prompt_search" model="ir.ui.view">
+        <field name="name">ai.assistant.prompt.search</field>
+        <field name="model">ai.assistant.prompt</field>
+        <field name="arch" type="xml">
+            <search string="AI Smart Assistant">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_ai_assistant_prompt" model="ir.actions.act_window">
+        <field name="name">AI Smart Assistant</field>
+        <field name="res_model">ai.assistant.prompt</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first AI Smart Assistant entry!
+            </p>
+        </field>
+    </record>
+
+    <!-- Top-level and Action Menu -->
+    <menuitem id="menu_ai_assistant_prompt_root" 
+              name="AI Smart Assistant" 
+              sequence="50"/>
+
+    <menuitem id="menu_ai_assistant_prompt_main" 
+              name="AI Smart Assistant" 
+              parent="menu_ai_assistant_prompt_root" 
+              action="action_ai_assistant_prompt" 
+              sequence="10"/>
+</odoo>
